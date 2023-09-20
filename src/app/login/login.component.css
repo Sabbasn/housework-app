@@ -1,0 +1,79 @@
+@font-face {
+    font-family: OpenSans;
+    src: url(src\assets\fonts\OpenSans-VariableFont_wdth,wght.ttf);
+}
+
+* {
+    font-family: OpenSans;
+    color: white;
+}
+
+div.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        800px circle at 100px 100px,
+        rgba(255, 255, 255, 0.06),
+        transparent 40%
+    );
+    background-color: rgb(40, 40, 40);
+    border: 2px solid rgb(70, 70, 70);
+    border-radius: 10px;
+    display: grid;
+    text-align: center;
+    padding: 60px 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
+a {
+    color: hotpink
+}
+
+h2 {
+    margin-top: 0px;
+    margin-bottom: 50px;
+    font-weight: 500;
+}
+
+input {
+    caret-color: var(--main-color);
+    font-size: medium;
+    border: none;
+    width: 50%;
+    padding: 10px 10px;
+    margin: auto auto 20px auto;
+    transition: 0.4s;
+    background-color: transparent;
+    outline: 1px solid grey;
+    border-radius: 5px;
+}
+
+input:hover {
+    outline: 1px solid white;
+}
+
+input:focus {
+    outline: 1px solid var(--main-color);   
+}
+
+button {
+    font-size: large;
+    color: white;
+    background-color: var(--main-color);
+    border: none;
+    cursor: pointer;
+    padding: 15px 5px;
+    width: 50%;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    margin-top: 5%;
+}
+
+button:hover {
+    transform: scaleX(1.1) scaleY(1.1);
+}

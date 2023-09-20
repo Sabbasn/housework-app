@@ -58,12 +58,15 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+          },
           "configurations": {
             "production": {
               "browserTarget": "housework-app:build:production"
             },
             "development": {
-              "browserTarget": "housework-app:build:development"
+              "browserTarget": "housework-app:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
