@@ -1,6 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { UserLogin } from "src/models/userLogin.model";
+import { UserRegister } from "src/models/userRegister.model";
 
 @Injectable({
     providedIn: 'root'
@@ -8,13 +10,21 @@ import { Observable } from "rxjs";
 export class AuthService {
     
     constructor(private httpClient: HttpClient) { }
-
-    bearerToken: any;
+    
     apiUrl: string = "https://localhost:7076/api/";
 
-    login(email: string, password: string) : Observable<any> {
-        const body = { 'email':email, 'password':password }
+    login(user: UserLogin) : Observable<any> {
+        const body = { 'email':user.email, 'password':user.password }
         const headers = { 'Content-Type':'application/json' }
         return this.httpClient.post<string>(this.apiUrl.concat("Users/Login"), body, {headers})
+    }
+
+    register(user: UserRegister) : Observable<any> {
+        const body = { 'email':user.email, 
+        'password':user.password, 
+        'firstName':user.firstName, 
+        'lastName':user.lastName }
+        const headers = { 'Content-Type':'application/json' }
+        return this.httpClient.post<string>(this.apiUrl.concat("Users/Register"), body, {headers})
     }
 }

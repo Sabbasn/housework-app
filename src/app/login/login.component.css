@@ -1,13 +1,3 @@
-@font-face {
-    font-family: OpenSans;
-    src: url(src\assets\fonts\OpenSans-VariableFont_wdth,wght.ttf);
-}
-
-* {
-    font-family: OpenSans;
-    color: white;
-}
-
 div.center {
     margin: 0;
     position: absolute;

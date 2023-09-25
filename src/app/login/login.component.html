@@ -1,11 +1,12 @@
 <div class="center">
-    <form>
+    <form #loginForm="ngForm" (ngSubmit)="login()">
         <h1>HouseworkApp</h1>
         <h2>Log In</h2>
-        <input placeholder="Email" type="email">
-        <input placeholder="Password" type="password">
+        <input placeholder="Email" type="email" name="email" [(ngModel)]="user.email">
+        <input placeholder="Password" type="password" name="password" [(ngModel)]="user.password">
         <br>
+        <p style="color: red;">{{ errorText }}</p>
+        <button [disabled]="!loginForm.form.valid" type="submit">Log In</button>
         <p>Don't have an account? <a routerLink="/register">Create one</a>!</p>
-        <button (click)="login()">Log In</button>
     </form>
 </div>

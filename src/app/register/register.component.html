@@ -1,11 +1,12 @@
 <div class="center">
-    <h1>HusarbeidApp</h1>
+    <h1>HouseworkApp</h1>
     <h2>Register</h2>
-    <form>
-        <input id="firstName" placeholder="First Name" type="text">
-        <input id="lastName" placeholder="Last Name" type="text">
-        <input id="email" placeholder="Email" type="email">
-        <button>Register</button>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+        <input id="firstName" placeholder="First Name" type="text" required [(ngModel)]="model.firstName" name="firstName">
+        <input id="lastName" placeholder="Last Name" type="text" required [(ngModel)]="model.lastName" name="lastName">
+        <input id="email" placeholder="Email" type="email" required [(ngModel)]="model.email" name="email">
+        <input id="password" placeholder="Password" type="password" required [(ngModel)]="model.password" name="password">
+        <button type="submit">Register</button>
         <p>Already have an account? <a routerLink="/login">Log In</a>!</p>
     </form>
 </div>
