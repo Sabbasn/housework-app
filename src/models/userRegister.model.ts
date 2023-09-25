@@ -3,6 +3,7 @@ export class UserRegister {
         public firstName = "",
         public lastName = "",
         public email = "",
+        public phoneNumber = "",
         public password = "",
     ) {}
 }
