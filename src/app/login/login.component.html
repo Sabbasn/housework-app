@@ -2,8 +2,8 @@
     <form #loginForm="ngForm" (ngSubmit)="login()">
         <h1>HouseworkApp</h1>
         <h2>Log In</h2>
-        <input placeholder="Email" type="email" name="email" [(ngModel)]="user.email">
-        <input placeholder="Password" type="password" name="password" [(ngModel)]="user.password">
+        <input required placeholder="Email" type="email" name="email" [(ngModel)]="user.email">
+        <input required placeholder="Password" type="password" name="password" [(ngModel)]="user.password">
         <br>
         <p style="color: red;">{{ errorText }}</p>
         <button [disabled]="!loginForm.form.valid" type="submit">Log In</button>

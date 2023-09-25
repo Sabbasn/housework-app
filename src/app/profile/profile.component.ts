@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
     this._userService.getUserData(this.email!).subscribe({
       next: (res) => this.mapUserData(res),
       error: (err) => console.log(err),
-      complete: () => console.log("Successfully got user data.")
+      complete: () => console.log("Successfully retrieved user data.")
     })
   }
 

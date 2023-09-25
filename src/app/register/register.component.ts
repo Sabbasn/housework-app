@@ -17,14 +17,26 @@ export class RegisterComponent {
 
   user = new UserRegister()
   errorMessage = "";
+  processPart = 0
+
+  actualPass = ""
+  confirmPass = ""
+  passwordCorrect = false
 
   onSubmit() {
-    console.log(this.user.password)
+    if (this.processPart == 0 || this.processPart == 1) {
+      this.processPart ++;
+      return;
+    }
     this._auth.register(this.user).subscribe({
       next: (res) => this.onRegistered(res),
       error: (err) => this.errorMessage = err["error"]["message"],
       complete: () => console.log("Http Request Complete.")
     })
+  }
+
+  passwordChecker(actual: string, confirm: string) {
+    this.passwordCorrect = (actual === confirm)
   }
 
   onRegistered(res: any) {
