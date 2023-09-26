@@ -1,1 +1,11 @@
-<h1>This is home</h1>
+<div class="container">
+    <div class="card-list">
+        <div class="card" *ngFor="let room of rooms">
+            <div class="img-display"></div>
+            <div class="info-display">
+                <h2>{{ room.name }}</h2>
+                <p>{{ room.status | status }}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,51 @@
-* {
-    color: white;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 30px;
+    width: auto;
+}
+
+.card {
+    display: block;
+    position: relative;
+    justify-content: center;
+    min-width: 300px;
+    min-height: 300px;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+    background-color: rgb(35, 35, 35);
+    border-radius: 2rem;
+    border: solid 1px white;
+    transition: 0.5s;
+}
+
+.card > .info-display {
+    left: 30px;
+    position: absolute;
+    line-height: 10px;
+}
+
+.card > .img-display {
+    background-image: url("../../assets/imgs/card-symbols/icon0-vector-493-01.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 2rem 2rem 0 0;
+    width: 100%;
+    height: 75%;
+}
+
+.card:hover {
+    transform: scale(1.1);
 }
