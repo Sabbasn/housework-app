@@ -1,7 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Room } from 'src/models/room.model';
-import { Service } from 'src/models/service.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +11,7 @@ import { Service } from 'src/models/service.model';
 export class HomeComponent implements OnInit {
 
   _userService: UserService = inject(UserService)
+  _router: Router = inject(Router)
 
   rooms : Room[] = []
 
@@ -23,4 +24,9 @@ export class HomeComponent implements OnInit {
   onSuccess(res: Room[]) {
     this.rooms = res;
   }
+
+  onRoomClick(room: Room) {
+    this._router.navigateByUrl(`/room/${room.name}`)
+  }
+
 }

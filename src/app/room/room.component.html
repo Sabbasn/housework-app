@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <h1>{{ roomName }}</h1>
+    <p *ngIf="chores.length < 1">Relax - you have no chores left here!</p>
+    <div class="chore-list">
+        <div class="chore" *ngFor="let chore of chores">
+            <h2>{{chore.name}}</h2>
+            <p>{{chore.description}}</p>
+            <p>{{chore.status | status}}</p>
+            <button class="done">✔</button>
+            <button class="remove">X</button>
+        </div>
+    </div>
+</div>

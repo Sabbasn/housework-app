@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.4rem;
+    align-items: center;
+    width: 70%;
+    min-width: 700px;
+    margin: auto;
+    padding: 10px;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    padding: 10px;
+    display: inline;
+    float: right;
+    transition: 0.1s;
+    border-right: 1px solid white;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a:hover {
+    color: var(--main-color)
+}
+
+li a {
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin: 0;
+    padding: 0;
+    transition: 0.4s;
+}
+
+.title:hover {
+    transform: scale(1.05);
+}
+
+.title a {
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.title a:hover {
+    color: var(--main-color)
+}

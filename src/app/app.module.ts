@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { StatusPipe } from './pipes/status.pipe';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CardTiltDirective } from './directives/card-tilt.directive';
+import { RoomComponent } from './room/room.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { StatusPipe } from './pipes/status.pipe';
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    StatusPipe
+    StatusPipe,
+    NavbarComponent,
+    CardTiltDirective,
+    RoomComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,7 @@ import { StatusPipe } from './pipes/status.pipe';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

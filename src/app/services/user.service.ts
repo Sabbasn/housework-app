@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Chore } from 'src/models/chore.model';
 import { Room } from 'src/models/room.model';
 import { Service } from 'src/models/service.model';
 
@@ -23,5 +24,10 @@ export class UserService {
   getRooms() : Observable<Room[]> {
     const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
     return this.httpClient.get<Room[]>(this.apiUrl.concat(`/Rooms`), {headers})
+  }
+
+  getChores(roomName: string) : Observable<Chore[]> {
+    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    return this.httpClient.get<Chore[]>(this.apiUrl.concat(`/Chore/${roomName}`), {headers})
   }
 }
