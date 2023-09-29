@@ -11,3 +11,12 @@
         </div>
     </div>
 </div>
+<form #choreForm #addChoreForm="ngForm" class="show-new-card" (ngSubmit)="addChore()">
+    <h2>Add Chore</h2>
+    <label for="name">Name</label>
+    <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newChore.name">
+    <label for="description">Description</label>
+    <textarea placeholder="Description" name="description" [(ngModel)]="newChore.description"></textarea>
+    <button class="add-chore">Add</button>
+</form>
+<button class="show-add-chore" (click)="showAddChore(choreForm)">+</button>

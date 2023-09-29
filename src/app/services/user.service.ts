@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AddChore } from 'src/models/addChore.model';
 import { Chore } from 'src/models/chore.model';
 import { Room } from 'src/models/room.model';
 import { Service } from 'src/models/service.model';
@@ -35,4 +36,14 @@ export class UserService {
     const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
     return this.httpClient.delete<Chore>(this.apiUrl.concat(`/Chore/${id}`), {headers})
   }
+
+  addChore(roomName: string, chore: AddChore) : Observable<Chore> {
+    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    const body = {
+      'name' : chore.name,
+      'description' : chore.description,
+      'status' : chore.status
+    }
+    return this.httpClient.post<Chore>(this.apiUrl.concat(`/Chore/${roomName}`), body, {headers})
+  } 
 }
