@@ -37,12 +37,12 @@
     gap: 10px;
     text-align: center;
     align-items: center;
-    background-color: rgba(40, 22, 124, 0.599);;
+    background-color: rgba(40, 22, 124, 0.599);
     border-radius: 0.6rem;
     padding: 20px;
 }
 
-.chore button {
+button {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     font-size: 1.5rem;
     cursor: pointer;
@@ -53,21 +53,63 @@
     transition: 0.4s;
 }
 
-.chore .remove {
-    float: right;
-    background-color: rgb(210, 49, 49);
-}
-
-.chore .done {
-    float: left;
+.done {
     background-color: var(--main-color);
 }
 
-.chore button:hover {
+button:hover {
     transform: scale(1.1);
 }
 
 .chore p {
     line-height: 30px;
     font-size: 1.2rem;
+}
+
+.add-button {
+    cursor: pointer;
+    background-color: rgba(40, 22, 124, 0.599);
+    height: 70px;
+    width: auto;
+    font-size: 2rem;
+    border-radius: 0.6rem;
+    border: none;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition: 0.4s;
+}
+
+.add-button:hover {
+    background-color: white;
+    color: rgba(40, 22, 124, 0.599);
+}
+
+.show-new-card {
+    display: grid;
+    justify-items: center;
+    font-size: 1.3rem;
+    padding: 20px;
+    border-radius: 0.6rem;
+    background-color: rgba(40, 22, 124, 0.599);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    gap: 10px;
+}
+
+.show-new-card input {
+    font-size: 1.2rem;
+    background-color: rgba(22, 12, 66, 0.599);
+    border-radius: 0.6rem;
+    width: 400px;
+    min-width: 400px;
+    max-width: 400px;
+    border: none;
+}
+
+.show-new-card textarea {
+    background-color: rgba(22, 12, 66, 0.599);
+    font-size: 1.2rem;
+    width: 400px;
+    min-width: 400px;
+    max-width: 400px;
+    border-radius: 0.6rem;
+    border: none;
 }

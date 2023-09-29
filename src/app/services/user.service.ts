@@ -30,4 +30,9 @@ export class UserService {
     const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
     return this.httpClient.get<Chore[]>(this.apiUrl.concat(`/Chore/${roomName}`), {headers})
   }
+
+  removeChore(id: number) : Observable<Chore> {
+    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    return this.httpClient.delete<Chore>(this.apiUrl.concat(`/Chore/${id}`), {headers})
+  }
 }

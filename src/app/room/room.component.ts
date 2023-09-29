@@ -11,6 +11,7 @@ import { Chore } from 'src/models/chore.model';
 export class RoomComponent implements OnInit {
   roomName: string = ""
   chores: Chore[] = []
+  showNewCard: boolean = true
 
   _userService: UserService = inject(UserService)
   _route: ActivatedRoute = inject(ActivatedRoute)
@@ -26,8 +27,17 @@ export class RoomComponent implements OnInit {
     this.chores = res;
   }
 
-  onRemovePress() {
-    
+  onDoneClick(id: number) {
+    this._userService.removeChore(id).subscribe({
+      next: (res) => console.log(res),
+      error: (err) => console.warn(err),
+      complete: () => console.log("Successfully removed chore!")
+    })
+    location.reload()
+  }
+
+  displayChoreTemplate() {
+    this.showNewCard = !this.showNewCard;
   }
   
 }

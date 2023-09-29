@@ -1,14 +1,21 @@
 <app-navbar></app-navbar>
 <div class="container">
     <h1>{{ roomName }}</h1>
+    <button #addButton class="add-button" (click)="displayChoreTemplate()">+</button>
+    <form *ngIf="showNewCard" class="show-new-card">
+        <label for="name">Name</label>
+        <input name="name">
+        <label for="description">Description</label>
+        <textarea id="description-input" name="description"></textarea>
+        <button class="done">✔</button>
+    </form>
     <p *ngIf="chores.length < 1">Relax - you have no chores left here!</p>
     <div class="chore-list">
         <div class="chore" *ngFor="let chore of chores">
             <h2>{{chore.name}}</h2>
             <p>{{chore.description}}</p>
             <p>{{chore.status | status}}</p>
-            <button class="done">✔</button>
-            <button class="remove">X</button>
+            <button class="done" (click)="onDoneClick(chore.id)">✔</button>
         </div>
     </div>
 </div>
