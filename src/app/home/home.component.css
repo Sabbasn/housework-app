@@ -24,12 +24,12 @@
     justify-content: center;
     min-width: 300px;
     min-height: 300px;
+    margin: 0;
     width: auto;
     height: auto;
     cursor: pointer;
     background-color: var(--main-color);
     border-radius: 2rem;
-    transition: 0.5s;
 }
 
 .card > .info-display {
