@@ -5,6 +5,7 @@
     background-color: var(--main-color);
     margin: auto;
     margin-top: 50px;
+    min-width: 400px;
     max-width: 800px;
     width: auto;
     min-height: 500px;
@@ -31,7 +32,11 @@
 }
 
 .chore {
-    display: block;
+    display: flex;
+    justify-content: center;
+    flex-flow: column wrap;
+    min-width: 300px;
+    flex-grow: 1;
     flex-basis: 40%;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     gap: 10px;
@@ -39,7 +44,7 @@
     align-items: center;
     background-color: rgba(40, 22, 124, 0.599);
     border-radius: 0.6rem;
-    padding: 20px;
+    padding: 15px;
 }
 
 button {
@@ -47,18 +52,25 @@ button {
     font-size: 1.5rem;
     cursor: pointer;
     border: none;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    transition: 0.4s;
-}
-
-.done {
-    background-color: var(--main-color);
+    transition: 0.3s;
 }
 
 button:hover {
-    transform: scale(1.1);
+    background-color: white;
+    color: var(--main-color)
+}
+
+.done-btn {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+}
+
+.add-btn {
+    border-radius: 0.6rem;
+    padding: 10px;
+    background-color: var(--main-color);
 }
 
 .chore p {
@@ -66,32 +78,16 @@ button:hover {
     font-size: 1.2rem;
 }
 
-.add-button {
-    cursor: pointer;
-    background-color: rgba(40, 22, 124, 0.599);
-    height: 70px;
-    width: auto;
-    font-size: 2rem;
-    border-radius: 0.6rem;
-    border: none;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    transition: 0.4s;
-}
-
-.add-button:hover {
-    background-color: white;
-    color: rgba(40, 22, 124, 0.599);
-}
-
 .show-new-card {
     display: grid;
     justify-items: center;
     font-size: 1.3rem;
     padding: 20px;
-    border-radius: 0.6rem;
     background-color: rgba(40, 22, 124, 0.599);
+    border-radius: 0.6rem;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     gap: 10px;
+    transition: 0.4s ease-in-out;
 }
 
 .show-new-card input {

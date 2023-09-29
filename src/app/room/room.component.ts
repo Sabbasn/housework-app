@@ -36,8 +36,14 @@ export class RoomComponent implements OnInit {
     location.reload()
   }
 
-  displayChoreTemplate() {
+  displayChoreTemplate(form: Element) {
+    if (this.showNewCard) {
+      form.classList.add("show-card")
+    } else {
+      form.classList.remove("show-card")
+    }
     this.showNewCard = !this.showNewCard;
+    
   }
   
 }
