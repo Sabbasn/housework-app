@@ -4,6 +4,7 @@ import { UserLogin } from 'src/models/userLogin.model';
 import { Router } from '@angular/router';
 import { Alert } from 'src/models/alert.model';
 import { AlertService } from '../services/alert.service';
+import { Status } from 'src/models/status.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
       next: (res) => this.onSuccess(res),
       error: (err) => { 
         this.errorText = err["error"]["message"]
-        const alert = new Alert("Could not login", "red")
+        const alert = new Alert("Could not login", Status.Locked)
         this.showAlert(alert)
         this.isLoggingIn = false
       },

@@ -4,6 +4,7 @@ import { Room } from 'src/models/room.model';
 import { Router } from '@angular/router';
 import { AlertService } from '../services/alert.service';
 import { Alert } from 'src/models/alert.model';
+import { Status } from 'src/models/status.enum';
 
 @Component({
   selector: 'app-home',
@@ -45,11 +46,11 @@ export class HomeComponent implements OnInit {
 
   addRoom() {
     if (!this.newRoom.name) {
-      this._alert.setAlert(new Alert("Room name can not be empty!", "red"))
+      this._alert.setAlert(new Alert("Room name can not be empty!", Status.Locked))
       return
     }
     this._userService.addRoom(this.newRoom).subscribe({
-      error: (err) => this._alert.setAlert(new Alert(err["message"], "red")),
+      error: (err) => this._alert.setAlert(new Alert(err["message"], Status.Locked)),
       complete: () => location.reload()
     })
   }

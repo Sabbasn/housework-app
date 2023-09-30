@@ -1,7 +1,8 @@
+import { Status } from "./status.enum";
+
 export class Alert {
     constructor(
         public text: string = "",
-        public backgroundColor: string = "var(--main-color)",
-        public classes = []
+        public backgroundColor: Status = Status.Locked,
     ) {}
 }
