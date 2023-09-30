@@ -18,4 +18,8 @@ export class NavbarComponent {
     localStorage.clear()
     this._router.navigateByUrl('/login')
   }
+
+  plan() {
+    this._router.navigateByUrl('/plan').then(() => window.location.reload())
+  }
 }

@@ -1,0 +1,16 @@
+<div class="container">
+    <form>
+        <label for="roomName">Room Name</label>
+        <input name="roomName">
+        <label for="difficulty">Difficulty</label>
+        <select #difficulty name="difficulty">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </form>
+    <form *ngFor="let n of difficulty.value">
+        <label for="choreName">Chore Name</label>
+        <input name="choreName">
+    </form>
+</div>
