@@ -57,6 +57,6 @@ export class LoginComponent implements OnInit {
   onSuccess(res: any) {
     localStorage.setItem("token", res["data"])
     localStorage.setItem("email", this.user.email)
-    this._router.navigate(["/profile"])
+    this._router.navigate(["/"]).then(() => location.reload())
   }
 }

@@ -1,11 +1,15 @@
 .container {
     display: grid;
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    margin-top: 1%;
     justify-content: center;
-    align-items: center;
 }
 
 .title {
-    text-align: left;
+    text-align: center;
+    border-bottom: 2px solid white
 }
 
 .card-list {
