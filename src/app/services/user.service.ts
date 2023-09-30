@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { AddChore } from 'src/models/addChore.model';
 import { Chore } from 'src/models/chore.model';
 import { Room } from 'src/models/room.model';
-import { Service } from 'src/models/service.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,14 +26,22 @@ export class UserService {
     return this.httpClient.get<Room[]>(this.apiUrl.concat(`/Rooms`), {headers})
   }
 
+  addRoom(room: Room) : Observable<Room> {
+    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    const body = {
+      'name' : room.name,
+    }
+    return this.httpClient.post<Room>(this.apiUrl.concat(`/Rooms`), body, {headers})
+  }
+
   getChores(roomName: string) : Observable<Chore[]> {
     const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
-    return this.httpClient.get<Chore[]>(this.apiUrl.concat(`/Chore/${roomName}`), {headers})
+    return this.httpClient.get<Chore[]>(this.apiUrl.concat(`/Chores/${roomName}`), {headers})
   }
 
   removeChore(id: number) : Observable<Chore> {
     const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
-    return this.httpClient.delete<Chore>(this.apiUrl.concat(`/Chore/${id}`), {headers})
+    return this.httpClient.delete<Chore>(this.apiUrl.concat(`/Chores/${id}`), {headers})
   }
 
   addChore(roomName: string, chore: AddChore) : Observable<Chore> {
@@ -44,6 +51,6 @@ export class UserService {
       'description' : chore.description,
       'status' : chore.status
     }
-    return this.httpClient.post<Chore>(this.apiUrl.concat(`/Chore/${roomName}`), body, {headers})
+    return this.httpClient.post<Chore>(this.apiUrl.concat(`/Chores/${roomName}`), body, {headers})
   } 
 }

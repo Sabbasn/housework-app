@@ -12,3 +12,10 @@
         </div>
     </div>
 </div>
+<form #roomForm #addRoomForm="ngForm" class="show-new-card" (ngSubmit)="addRoom()">
+    <h2>Add Room</h2>
+    <label for="name">Name</label>
+    <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newRoom.name">
+    <button class="add-room">Add</button>
+</form>
+<button class="show-add-room" (click)="showAddRoom(roomForm)">+</button>
