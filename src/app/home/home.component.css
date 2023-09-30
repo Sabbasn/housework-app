@@ -1,6 +1,7 @@
 .container {
     display: grid;
-    width: 1200px;
+    max-width: 1200px;
+    min-width: 600px;
     height: auto;
     margin: auto;
     margin-top: 1%;
@@ -17,7 +18,7 @@
     flex-wrap: wrap;
     width: 75%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 30px;
     width: auto;
 }
