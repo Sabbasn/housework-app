@@ -1,7 +1,9 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { UserLogin } from 'src/models/userLogin.model';
 import { Router } from '@angular/router';
+import { Alert } from 'src/models/alert.model';
+import { AlertService } from '../services/alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +18,18 @@ export class LoginComponent implements OnInit {
 
   token: any;
   user = new UserLogin()
+  isLoggingIn = false
   errorText = "";
   constructor(
     private _auth: AuthService,
     private _router: Router,
   ) { }
+
+  _alert : AlertService = inject(AlertService)
+
+  showAlert(alert: Alert) {
+    this._alert.setAlert(alert)
+  }
   
   ngOnInit(): void {
     this.token = localStorage.getItem('token')
@@ -28,14 +37,19 @@ export class LoginComponent implements OnInit {
     if (isValid) {
       this._router.navigateByUrl('').then(() => window.location.reload())
     }
-    
   }
 
   login() {
+    this.isLoggingIn = true
     this._auth.login(this.user).subscribe({
       next: (res) => this.onSuccess(res),
-      error: (err) => this.errorText = err["error"]["message"],
-      complete: () => console.log("Http Request Complete.")
+      error: (err) => { 
+        this.errorText = err["error"]["message"]
+        const alert = new Alert("Could not login", "red")
+        this.showAlert(alert)
+        this.isLoggingIn = false
+      },
+      complete: () => this.isLoggingIn = false
     })
   }
 

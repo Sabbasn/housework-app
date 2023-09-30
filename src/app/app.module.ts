@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CardTiltDirective } from './directives/card-tilt.directive';
 import { RoomComponent } from './room/room.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CardTiltDirective,
     RoomComponent,
     NotFoundComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
