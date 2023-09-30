@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/models/util/alert.model';
 import { Status } from 'src/models/housework/status.enum';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css', './add-room.component.css']
+  styleUrls: ['./home.component.css', './add-room.component.css'],
 })
 export class HomeComponent implements OnInit {
 
@@ -21,9 +22,16 @@ export class HomeComponent implements OnInit {
   newRoom : Room = new Room("", 0, [])
   showNewCard = false;
 
+  drop(event: CdkDragDrop<Room[]>) {
+    var elemToMove = this.rooms[event.previousIndex]
+    this.rooms[event.previousIndex] = this.rooms[event.currentIndex]
+    this.rooms[event.currentIndex] = elemToMove
+  }
+
   ngOnInit(): void {
     this._userService.getRooms().subscribe({
       next: (res) => this.onSuccess(res),
+      error: (err) => this._alert.setAlert(new Alert("Could not get rooms.", Status.Locked))
     })
   }
 

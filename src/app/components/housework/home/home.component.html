@@ -1,10 +1,9 @@
 <app-navbar></app-navbar>
 <div class="container">
     <h2 class="title">Rooms</h2>
-    <div class="card-list">
+    <div class="card-list" cdkDropList (cdkDropListDropped)="drop($event)">
         <div #card class="card" *ngFor="let room of rooms" appCardTilt [card]="card" (click)="onRoomClick(room)"
-            [ngStyle]="{'background-color': (room.status == 2) ? '#e34240' : 'var(--main-color)'}">
-            <div class="img-display"></div>
+            [ngStyle]="{'background-color': (room.status == 2) ? '#e34240' : 'var(--main-color)'}" cdkDrag>
             <div class="info-display">
                 <h2>{{ room.name }}</h2>
                 <p>{{ room.status | status }}</p>

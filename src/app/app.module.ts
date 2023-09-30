@@ -15,6 +15,8 @@ import { CardTiltDirective } from './directives/card-tilt.directive';
 import { RoomComponent } from './components/housework/room/room.component';
 import { NotFoundComponent } from './components/util/not-found/not-found.component';
 import { AlertComponent } from './components/util/alert/alert.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CdkDrag, CdkDropList, DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { AlertComponent } from './components/util/alert/alert.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    DragDropModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent]
