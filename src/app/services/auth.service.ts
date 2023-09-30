@@ -2,8 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import jwtDecode from "jwt-decode";
 import { Observable } from "rxjs";
-import { UserLogin } from "src/models/userLogin.model";
-import { UserRegister } from "src/models/userRegister.model";
+import { UserLogin } from "src/models/auth/userLogin.model";
+import { UserRegister } from "src/models/auth/userRegister.model";
 
 @Injectable({
     providedIn: 'root'

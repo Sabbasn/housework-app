@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AddChore } from 'src/models/addChore.model';
-import { Chore } from 'src/models/chore.model';
-import { Room } from 'src/models/room.model';
+import { AddChore } from 'src/models/housework/addChore.model';
+import { Chore } from 'src/models/housework/chore.model';
+import { Room } from 'src/models/housework/room.model';
 
 @Injectable({
   providedIn: 'root'

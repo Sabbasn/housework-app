@@ -1,10 +1,10 @@
 import { Component, Injectable, OnInit, inject } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { UserLogin } from 'src/models/userLogin.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserLogin } from 'src/models/auth/userLogin.model';
 import { Router } from '@angular/router';
-import { Alert } from 'src/models/alert.model';
-import { AlertService } from '../services/alert.service';
-import { Status } from 'src/models/status.enum';
+import { Alert } from 'src/models/util/alert.model';
+import { AlertService } from 'src/app/services/alert.service';
+import { Status } from 'src/models/housework/status.enum';
 
 @Injectable({
   providedIn: 'root'

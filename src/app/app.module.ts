@@ -3,26 +3,26 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './components/housework/home/home.component';
+import { ProfileComponent } from './components/housework/profile/profile.component';
 import { StatusPipe } from './pipes/status.pipe';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './components/housework/navbar/navbar.component';
 import { CardTiltDirective } from './directives/card-tilt.directive';
-import { RoomComponent } from './room/room.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { AlertComponent } from './alert/alert.component';
+import { RoomComponent } from './components/housework/room/room.component';
+import { NotFoundComponent } from './components/util/not-found/not-found.component';
+import { AlertComponent } from './components/util/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     ProfileComponent,
+    HomeComponent,
     StatusPipe,
     NavbarComponent,
     CardTiltDirective,

@@ -1,4 +1,4 @@
-import { Status } from "./status.enum";
+import { Status } from "../housework/status.enum";
 
 export class Alert {
     constructor(

@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit, inject } from '@angular/core';
-import { AlertService } from '../services/alert.service';
-import { Alert } from 'src/models/alert.model';
-import { Status } from 'src/models/status.enum';
+import { AlertService } from 'src/app/services/alert.service';
+import { Alert } from 'src/models/util/alert.model';
+import { Status } from 'src/models/housework/status.enum';
 
 @Component({
   selector: 'app-alert',

@@ -44,7 +44,7 @@
 }
 
 .card > .img-display {
-    background-image: url("../../assets/imgs/card-symbols/icon0-vector-493-01.jpg");
+    background-image: url("src\\assets\\imgs\\card-symbols\\lock.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

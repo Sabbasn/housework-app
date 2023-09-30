@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
-import { RoomComponent } from './room/room.component';
-import { authGuard } from './auth.guard';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { HomeComponent } from './components/housework/home/home.component';
+import { ProfileComponent } from './components/housework/profile/profile.component';
+import { RoomComponent } from './components/housework/room/room.component';
+import { authGuard } from './guards/auth.guard';
+import { NotFoundComponent } from './components/util/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },

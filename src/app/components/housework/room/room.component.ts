@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { Chore } from 'src/models/chore.model';
-import { AddChore } from 'src/models/addChore.model';
+import { Chore } from 'src/models/housework/chore.model';
+import { AddChore } from 'src/models/housework/addChore.model';
 
 @Component({
   selector: 'app-room',

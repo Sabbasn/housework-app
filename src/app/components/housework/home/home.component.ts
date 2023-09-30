@@ -1,10 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { Room } from 'src/models/room.model';
+import { UserService } from 'src/app/services/user.service';
+import { Room } from 'src/models/housework/room.model';
 import { Router } from '@angular/router';
-import { AlertService } from '../services/alert.service';
-import { Alert } from 'src/models/alert.model';
-import { Status } from 'src/models/status.enum';
+import { AlertService } from 'src/app/services/alert.service';
+import { Alert } from 'src/models/util/alert.model';
+import { Status } from 'src/models/housework/status.enum';
 
 @Component({
   selector: 'app-home',
