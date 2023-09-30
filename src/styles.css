@@ -2,8 +2,8 @@
 :root {
     --bg-color: rgb(20, 20, 20);
     --main-color: rgb(34, 169, 128);
-    --secondary-color: 
-    --locked-color:
+    --secondary-color: rgb(77, 54, 180);
+    --locked-color: #e34240;
 }
 
 body {

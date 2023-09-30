@@ -1,13 +1,34 @@
 <app-navbar></app-navbar>
-<div class="container">
-    <h1>{{ roomName }}</h1>
-    <p *ngIf="chores.length < 1">Relax - you have no chores left here!</p>
-    <div class="chore-list">
-        <div class="chore" *ngFor="let chore of chores">
+<h1 id="title">{{ roomName }}</h1>
+<p *ngIf="choresActive.length < 1 && choresFinished.length < 1">Relax - you have no chores left here!</p>
+<div class="container" *ngIf="choresActive.length > 0 || choresFinished.length > 0">
+    <div class="chore-list active"
+        #activeList="cdkDropList" 
+        cdkDropList 
+        [cdkDropListData]="choresActive" 
+        [cdkDropListConnectedTo]="finishedList"
+        (cdkDropListDropped)="drop($event)">
+        <h2>Active</h2>
+        <div class="chore" 
+            [ngClass]="{'locked': chore.status == 2}" 
+            *ngFor="let chore of choresActive" 
+            cdkDrag
+            [cdkDragDisabled]="chore.status == 2">
             <h2>{{chore.name}}</h2>
             <p>{{chore.description}}</p>
             <p>{{chore.status | status}}</p>
-            <button class="done-btn" (click)="onDoneClick(chore.id)">✔</button>
+        </div>
+    </div>
+    <div class="chore-list finished" 
+        #finishedList="cdkDropList"
+        cdkDropList
+        [cdkDropListData]="choresFinished"
+        [cdkDropListConnectedTo]="activeList"
+        (cdkDropListDropped)="drop($event, finishedList)">
+        <h2>Finished</h2>
+        <div class="chore" *ngFor="let chore of choresFinished" cdkDrag>
+            <h2>{{chore.name}}</h2>
+            <p>{{chore.description}}</p>
         </div>
     </div>
 </div>

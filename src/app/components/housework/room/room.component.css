@@ -1,5 +1,6 @@
 .container {
     display: grid;
+    grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     gap: 20px;
     background-color: var(--main-color);
@@ -14,38 +15,63 @@
     padding: 15px;
 }
 
+#title {
+    text-align: center;
+    border-bottom: 1px solid white;
+    width: 50%;
+    margin: auto;
+}
+
 .chore-list {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    flex-flow: column nowrap;
+    flex-grow: 0;
+    border: 3px solid white;
+    border-radius: 0.6rem;
+    padding: 10px;
     gap: 20px;
 }
 
-.container h1 {
-    margin: auto;
-    padding-bottom: 10px;
+.chore-list h2 {
+    text-align: center;
 }
 
-.container p {
-    margin: auto;
+p {
+    text-align: center;
+    margin: 10px auto;
     font-size: 1.3rem;
 }
 
+.chore.locked {
+    cursor: not-allowed;
+    background-color: var(--locked-color);
+}
+
+.chore.finished {
+    background-color: var(--main-color);
+}
+
+.chore.cdk-drag-preview {
+    background-color: green;
+    cursor: grabbing;
+}
+
 .chore {
-    display: flex;
+    cursor: grab;
+    display: block;
+    flex-grow: 0;
     justify-content: center;
     flex-flow: column wrap;
     min-width: 300px;
-    flex-grow: 1;
-    flex-basis: 40%;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     gap: 10px;
     text-align: center;
     align-items: center;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     background-color: rgba(40, 22, 124, 0.599);
     border-radius: 0.6rem;
     padding: 15px;
 }
+
 
 button {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
