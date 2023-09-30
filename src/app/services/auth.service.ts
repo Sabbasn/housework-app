@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import jwtDecode from "jwt-decode";
 import { Observable } from "rxjs";
 import { UserLogin } from "src/models/userLogin.model";
 import { UserRegister } from "src/models/userRegister.model";
@@ -29,5 +30,14 @@ export class AuthService {
         }
         const headers = { 'Content-Type': 'application/json' }
         return this.httpClient.post<string>(this.apiUrl.concat("Users/Register"), body, { headers })
+    }
+
+    isTokenValid(token: string) {
+        const decoded: any = jwtDecode(token)
+        const expDate = new Date(decoded["exp"] * 1000).getTime()
+        if (expDate > Date.now()) {
+            return true
+        }
+        return false
     }
 }

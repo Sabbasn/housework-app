@@ -13,6 +13,7 @@ import { StatusPipe } from './pipes/status.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CardTiltDirective } from './directives/card-tilt.directive';
 import { RoomComponent } from './room/room.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RoomComponent } from './room/room.component';
     NavbarComponent,
     CardTiltDirective,
     RoomComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

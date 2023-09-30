@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { UserLogin } from 'src/models/userLogin.model';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   token: any;
   user = new UserLogin()
@@ -21,6 +21,15 @@ export class LoginComponent {
     private _auth: AuthService,
     private _router: Router,
   ) { }
+  
+  ngOnInit(): void {
+    this.token = localStorage.getItem('token')
+    const isValid : boolean = this._auth.isTokenValid(this.token)
+    if (isValid) {
+      this._router.navigateByUrl('').then(() => window.location.reload())
+    }
+    
+  }
 
   login() {
     this._auth.login(this.user).subscribe({
