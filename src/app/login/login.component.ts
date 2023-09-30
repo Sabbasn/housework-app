@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       next: (res) => this.onSuccess(res),
       error: (err) => { 
         this.errorText = err["error"]["message"]
-        const alert = new Alert("Could not login", Status.Locked)
+        const alert = new Alert(this.errorText, Status.Locked)
         this.showAlert(alert)
         this.isLoggingIn = false
       },
