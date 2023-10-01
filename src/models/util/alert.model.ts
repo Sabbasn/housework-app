@@ -1,8 +1,8 @@
-import { Status } from "../housework/status.enum";
+import { AlertStatus } from "./alertStatus.enum";
 
 export class Alert {
     constructor(
         public text: string = "",
-        public backgroundColor: Status = Status.Locked,
+        public backgroundColor: AlertStatus = AlertStatus.Error,
     ) {}
 }

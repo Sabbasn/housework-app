@@ -6,6 +6,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/models/util/alert.model';
 import { Status } from 'src/models/housework/status.enum';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { AlertStatus } from 'src/models/util/alertStatus.enum';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this._userService.getRooms().subscribe({
       next: (res) => this.onSuccess(res),
-      error: (err) => this._alert.setAlert(new Alert("Could not get rooms.", Status.Locked))
+      error: (err) => this._alert.setAlert(new Alert("Could not get rooms.", AlertStatus.Error))
     })
   }
 
@@ -54,11 +55,11 @@ export class HomeComponent implements OnInit {
 
   addRoom() {
     if (!this.newRoom.name) {
-      this._alert.setAlert(new Alert("Room name can not be empty!", Status.Locked))
+      this._alert.setAlert(new Alert("Room name can not be empty!", AlertStatus.Warning))
       return
     }
     this._userService.addRoom(this.newRoom).subscribe({
-      error: (err) => this._alert.setAlert(new Alert(err["message"], Status.Locked)),
+      error: (err) => this._alert.setAlert(new Alert(err["message"], AlertStatus.Error)),
       complete: () => location.reload()
     })
   }

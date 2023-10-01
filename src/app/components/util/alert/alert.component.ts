@@ -1,7 +1,7 @@
 import { Component, Injectable, OnInit, inject } from '@angular/core';
 import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/models/util/alert.model';
-import { Status } from 'src/models/housework/status.enum';
+import { AlertStatus } from 'src/models/util/alertStatus.enum';
 
 @Component({
   selector: 'app-alert',
@@ -17,16 +17,14 @@ export class AlertComponent implements OnInit {
   alert: Alert = new Alert()
   _alertService : AlertService = inject(AlertService)
 
-  colorPicker(status: Status) {
+  colorPicker(status: AlertStatus) {
     switch (status) {
-      case Status.Active:
+      case AlertStatus.Success:
         return 'var(--main-color)'
-      case Status.Finished:
-        return 'blue'
-      case Status.Locked:
+      case AlertStatus.Warning:
+        return '#db7e37'
+      case AlertStatus.Error:
         return '#e34240'
-      default:
-        return 'var(--main-color)'
     }
   }
 

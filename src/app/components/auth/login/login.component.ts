@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Alert } from 'src/models/util/alert.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { Status } from 'src/models/housework/status.enum';
+import { AlertStatus } from 'src/models/util/alertStatus.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
         if (!this.errorText) {
           this.errorText = 'Couldn\'t login. Please try again.'
         }
-        const alert = new Alert(this.errorText, Status.Locked)
+        const alert = new Alert(this.errorText, AlertStatus.Error)
         this.showAlert(alert)
         this.isLoggingIn = false
       },
