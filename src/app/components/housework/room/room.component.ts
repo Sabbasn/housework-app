@@ -11,7 +11,7 @@ import { AlertService } from 'src/app/services/alert.service';
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.css', './add-chore.component.css']
+  styleUrls: ['./room.component.css', '../home/add-room.component.css']
 })
 export class RoomComponent implements OnInit {
   roomName: string = ""
