@@ -4,7 +4,6 @@ import { UserLogin } from 'src/models/auth/userLogin.model';
 import { Router } from '@angular/router';
 import { Alert } from 'src/models/util/alert.model';
 import { AlertService } from 'src/app/services/alert.service';
-import { Status } from 'src/models/housework/status.enum';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
 
 @Injectable({
@@ -22,16 +21,10 @@ export class LoginComponent implements OnInit {
   user = new UserLogin()
   isLoggingIn = false
   errorText = "";
-  constructor(
-    private _auth: AuthService,
-    private _router: Router,
-  ) { }
 
+  _auth : AuthService = inject(AuthService)
   _alert : AlertService = inject(AlertService)
-
-  showAlert(alert: Alert) {
-    this._alert.setAlert(alert)
-  }
+  _router : Router = inject(Router)
   
   ngOnInit(): void {
     this.token = localStorage.getItem('token')
@@ -48,10 +41,10 @@ export class LoginComponent implements OnInit {
       error: (err) => { 
         this.errorText = err["error"]["message"]
         if (!this.errorText) {
-          this.errorText = 'Couldn\'t login. Please try again.'
+          this.errorText = 'Login failed. Please try again.'
         }
         const alert = new Alert(this.errorText, AlertStatus.Error)
-        this.showAlert(alert)
+        this._alert.setAlert(alert)
         this.isLoggingIn = false
       },
       complete: () => this.isLoggingIn = false
