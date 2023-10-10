@@ -52,7 +52,6 @@ p {
 }
 
 .chore.cdk-drag-preview {
-    background-color: green;
     cursor: grabbing;
 }
 
@@ -60,6 +59,7 @@ p {
     cursor: grab;
     display: block;
     flex-grow: 0;
+    flex-shrink: 1;
     justify-content: center;
     flex-flow: column wrap;
     min-width: 300px;
@@ -69,7 +69,7 @@ p {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     background-color: rgba(40, 22, 124, 0.599);
     border-radius: 0.6rem;
-    padding: 15px;
+    padding: 5px;
 }
 
 

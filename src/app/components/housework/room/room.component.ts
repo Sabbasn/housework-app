@@ -7,6 +7,7 @@ import { Status } from 'src/models/housework/status.enum';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Alert } from 'src/models/util/alert.model';
 import { AlertService } from 'src/app/services/alert.service';
+import { AlertStatus } from 'src/models/util/alertStatus.enum';
 
 @Component({
   selector: 'app-room',
@@ -26,9 +27,7 @@ export class RoomComponent implements OnInit {
   
   ngOnInit(): void {
     this.roomName = this._route.snapshot.paramMap.get('name')?.toString()!
-    this._userService.getChores(this.roomName).subscribe({
-      next: (res) => this.onSuccess(res)
-    })
+    this.updateChores()
   }
 
   drop(event: CdkDragDrop<Chore[]>, finishedList?: any) {
@@ -53,16 +52,22 @@ export class RoomComponent implements OnInit {
     }
   }
 
-  onSuccess(res: Chore[]) {
-    res.forEach(chore => {
-      if(chore.status === Status.Active || chore.status === Status.Locked) {
-        this.choresActive.push(chore)
-      } else {
-        this.choresFinished.push(chore)
+  updateChores() {
+    this.choresActive = []
+    this.choresFinished = []
+    this._userService.getChores(this.roomName).subscribe({
+      next: (res) => {
+        res.forEach(chore => {
+          if(chore.status === Status.Active || chore.status === Status.Locked) {
+            this.choresActive.push(chore)
+          } else {
+            this.choresFinished.push(chore)
+          }
+        })
+        this.choresActive.sort((a, b) => {
+          return a.status - b.status
+        })
       }
-    })
-    this.choresActive.sort((a, b) => {
-      return a.status - b.status
     })
   }
 
@@ -85,12 +90,16 @@ export class RoomComponent implements OnInit {
   }
 
   addChore() {
+    if (!this.newChore.name) {
+      this._alert.setAlert(new Alert("Name of chore can not be empty!", AlertStatus.Warning))
+      return
+    }
     this._userService.addChore(this.roomName, this.newChore).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.warn(err),
       complete: () => { 
         console.log("Successfully added chore!")
-        location.reload()
+        this.updateChores()
       }
     })
   }
