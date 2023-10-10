@@ -30,14 +30,16 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._userService.getRooms().subscribe({
-      next: (res) => this.onSuccess(res),
-      error: (err) => this._alert.setAlert(new Alert("Could not get rooms.", AlertStatus.Error))
-    })
+    this.updateRooms()
   }
 
-  onSuccess(res: Room[]) {
-    this.rooms = res;
+  updateRooms() {
+    this._userService.getRooms().subscribe({
+      next: (res) => {
+        this.rooms = res
+      },
+      error: (err) => this._alert.setAlert(new Alert(err["error"]["message"], AlertStatus.Error))
+    })
   }
 
   onRoomClick(room: Room) {
@@ -60,7 +62,7 @@ export class HomeComponent implements OnInit {
     }
     this._userService.addRoom(this.newRoom).subscribe({
       error: (err) => this._alert.setAlert(new Alert(err["message"], AlertStatus.Error)),
-      complete: () => location.reload()
+      complete: () => this.updateRooms()
     })
   }
 }

@@ -17,7 +17,6 @@ import { NotFoundComponent } from './components/util/not-found/not-found.compone
 import { AlertComponent } from './components/util/alert/alert.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { PlanComponent } from './components/housework/plan/plan.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { PlanComponent } from './components/housework/plan/plan.component';
     RoomComponent,
     NotFoundComponent,
     AlertComponent,
-    PlanComponent,
   ],
   imports: [
     BrowserModule,

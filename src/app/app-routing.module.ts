@@ -7,7 +7,6 @@ import { ProfileComponent } from './components/housework/profile/profile.compone
 import { RoomComponent } from './components/housework/room/room.component';
 import { authGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './components/util/not-found/not-found.component';
-import { PlanComponent } from './components/housework/plan/plan.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
@@ -15,7 +14,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'room/:name', component: RoomComponent, canActivate: [authGuard] },
-  { path: 'plan', component: PlanComponent, canActivate: [authGuard] },
   { path: '**', component: NotFoundComponent}
 ];
 
