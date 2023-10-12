@@ -24,5 +24,11 @@ export class ProfileComponent implements OnInit {
     this.user.email = res["data"]["email"]
     this.user.firstName = res["data"]["firstName"]
     this.user.lastName = res["data"]["lastName"]
+    this.user.level = res["data"]["level"]
+    this.user.experience = res["data"]["experience"]
+  }
+
+  calcExpToLevel() {
+    return Math.ceil(200 * Math.log(this.user.level) + 100)
   }
 }

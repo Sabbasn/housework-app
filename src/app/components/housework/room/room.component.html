@@ -16,6 +16,7 @@
             [cdkDragDisabled]="chore.status == 2">
             <h2>{{chore.name}}</h2>
             <p>{{chore.description}}</p>
+            <p><b>Reward:</b> {{chore.experienceReward}}xp</p>
             <p>{{chore.status | status}}</p>
         </div>
     </div>
@@ -29,6 +30,7 @@
         <div class="chore" *ngFor="let chore of choresFinished" cdkDrag>
             <h2>{{chore.name}}</h2>
             <p>{{chore.description}}</p>
+            <p>{{chore.status | status}}</p>
         </div>
     </div>
 </div>

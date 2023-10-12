@@ -15,20 +15,21 @@ export class UserService {
 
   apiUrl: string = "https://localhost:7076/api";
   token = localStorage.getItem("token")
+  headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
 
   getUserData(email: string) {
-    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    const headers = this.headers
     localStorage.setItem("email", email)
     return this.httpClient.get(this.apiUrl.concat(`/Users/${email}`), {headers})
   }
 
   getRooms() : Observable<Room[]> {
-    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    const headers = this.headers
     return this.httpClient.get<Room[]>(this.apiUrl.concat(`/Rooms`), {headers})
   }
 
   addRoom(room: Room) : Observable<Room> {
-    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    const headers = this.headers
     const body = {
       'name' : room.name,
     }
@@ -36,12 +37,12 @@ export class UserService {
   }
 
   getChores(roomName: string) : Observable<Chore[]> {
-    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    const headers = this.headers
     return this.httpClient.get<Chore[]>(this.apiUrl.concat(`/Chores/${roomName}`), {headers})
   }
 
   updateChore(chore: Chore) : Observable<Service<Chore>> {
-    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    const headers = this.headers
     const body = {
       'status': chore.status
     }
@@ -49,16 +50,16 @@ export class UserService {
   }
 
   removeChore(id: number) : Observable<Chore> {
-    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    const headers = this.headers
     return this.httpClient.delete<Chore>(this.apiUrl.concat(`/Chores/${id}`), {headers})
   }
 
   addChore(roomName: string, chore: AddChore) : Observable<Chore> {
-    const headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
+    const headers = this.headers
     const body = {
       'name' : chore.name,
       'description' : chore.description,
-      'status' : chore.status
+      'status' : chore.status,
     }
     return this.httpClient.post<Chore>(this.apiUrl.concat(`/Chores/${roomName}`), body, {headers})
   } 
