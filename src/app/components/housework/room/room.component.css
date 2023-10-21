@@ -1,17 +1,19 @@
 .container {
-    display: grid;
+    display: flex;
+    position: relative;
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     gap: 20px;
-    background-color: var(--main-color);
     margin: auto;
     margin-top: 50px;
     min-width: 400px;
     max-width: 800px;
     width: auto;
-    min-height: 500px;
     height: auto;
+    min-height: 500px;
     border-radius: 0.6rem;
+    background-color: rgb(40, 40, 40);
+    border: 2px solid rgb(70, 70, 70);
     padding: 15px;
 }
 
@@ -19,21 +21,6 @@
     text-align: center;
     border-bottom: 1px solid white;
     width: 50%;
-    margin: auto;
-}
-
-.chore-list {
-    display: flex;
-    flex-flow: column nowrap;
-    flex-grow: 0;
-    border: 3px solid white;
-    border-radius: 0.6rem;
-    padding: 10px;
-    gap: 20px;
-}
-
-.chore-list h2 {
-    text-align: center;
 }
 
 p {
@@ -51,27 +38,35 @@ p {
     background-color: var(--main-color);
 }
 
-.chore.cdk-drag-preview {
-    cursor: grabbing;
+.chore p {
+    line-height: 30px;
+    font-size: 1.2rem;
 }
 
 .chore {
-    cursor: grab;
     display: block;
-    flex-grow: 0;
-    flex-shrink: 1;
-    justify-content: center;
-    flex-flow: column wrap;
-    min-width: 300px;
-    gap: 10px;
+    position: absolute;
     text-align: center;
-    align-items: center;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    background-color: rgba(40, 22, 124, 0.599);
-    border-radius: 0.6rem;
+    align-self: center;
+    min-width: 300px;
+    min-height: 300px;
+    height: auto;
+    width: auto;
     padding: 5px;
+    gap: 10px;
+    background-color: var(--main-color);
+    border-radius: 0.6rem;
+    border: 1px white solid;
+    transition: all 500ms ease-in-out;
 }
 
+.chore:nth-child(2) {
+    
+}
+
+.chore:last-child {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
 
 button {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -91,9 +86,4 @@ button:hover {
     width: 50px;
     border-radius: 50%;
     background-color: var(--main-color);
-}
-
-.chore p {
-    line-height: 30px;
-    font-size: 1.2rem;
 }

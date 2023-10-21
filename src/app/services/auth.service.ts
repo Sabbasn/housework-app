@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { isDevMode } from "@angular/core";
 import jwtDecode from "jwt-decode";
 import { Observable } from "rxjs";
 import { UserLogin } from "src/models/auth/userLogin.model";
@@ -12,7 +13,7 @@ export class AuthService {
 
     constructor(private httpClient: HttpClient) { }
 
-    apiUrl: string = "https://localhost:7076/api/";
+    apiUrl: string = isDevMode() ? "https://localhost:7076/api/":"https://houseworkappapi.azurewebsites.net/api/";
 
     login(user: UserLogin): Observable<any> {
         const body = { 'email': user.email, 'password': user.password }
