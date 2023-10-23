@@ -1,12 +1,10 @@
 .container {
     display: flex;
-    position: relative;
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 20px;
     margin: auto;
-    margin-top: 50px;
-    min-width: 400px;
     max-width: 800px;
     width: auto;
     height: auto;
@@ -45,7 +43,7 @@ p {
 
 .chore {
     display: block;
-    position: absolute;
+    position: relative;
     text-align: center;
     align-self: center;
     min-width: 300px;

@@ -1,7 +1,6 @@
 .container {
     display: grid;
     max-width: 1200px;
-    min-width: 600px;
     height: auto;
     margin: auto;
     justify-content: center;

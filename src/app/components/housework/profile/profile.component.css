@@ -1,12 +1,12 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    margin: 0 auto;
+    height: auto;
+    margin: auto;
+    margin-top: 50px;
     background: radial-gradient(
-        800px circle at 100px 100px,
+        800px circle at 50% 25%,
         rgba(255, 255, 255, 0.06),
         transparent 40%
     );
@@ -14,7 +14,6 @@
     border: 2px solid rgb(70, 70, 70);
     border-radius: 10px;
     max-width: 400px;
-    height: auto;
     padding: 20px;
 }
 

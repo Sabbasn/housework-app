@@ -18,8 +18,17 @@
 }
 
 .showing {
-    right: 50px;
     opacity: 1;
+    right: 50px;
+}
+
+@media (max-width: 500px) {
+    .showing {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        opacity: 1;
+    }
 }
 
 .show-new-card h2 { 

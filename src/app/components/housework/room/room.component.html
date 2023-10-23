@@ -1,10 +1,12 @@
 <app-navbar></app-navbar>
 <div class="container">
     <h1 id="title">{{ roomName }}</h1>
-    <p *ngIf="choresActive.length < 1">Relax - you have no chores left here!</p>
-    <div class="chore" *ngFor="let chore of choresActive" appCardTilt>
-        <h2>{{ chore.name }}</h2>
-        <p>{{ chore.description }}</p>
+    <div class="chores">
+        <p *ngIf="choresActive.length < 1">Relax - you have no chores left here!</p>
+        <div class="chore" *ngFor="let chore of choresActive" appCardTilt>
+            <h2>{{ chore.name }}</h2>
+            <p>{{ chore.description }}</p>
+        </div>
     </div>
 </div>
 <form #choreForm #addChoreForm="ngForm" class="show-new-card" (ngSubmit)="addChore()">
