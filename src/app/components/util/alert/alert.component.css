@@ -1,5 +1,7 @@
 .container {
-    --width: 400px;
+    min-width: 300px;
+    max-width: 600px;
+    width: auto;
     position: fixed;
     display: flex;
     align-items: center;
@@ -8,8 +10,8 @@
     margin: 5% auto;
     left: 0;
     right: 0;
-    width: var(--width);
     border-radius: 0.6rem;
+    border: 1px solid white;
     padding: 10px;
     scale: 0;
     z-index: 10;
@@ -19,6 +21,12 @@
     rgba(0, 0, 0, 0.12) 0px 4px 6px, 
     rgba(0, 0, 0, 0.17) 0px 12px 13px, 
     rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+@media(max-width:500px) {
+    .container {
+        width: 80%;
+    }
 }
 
 .show {
