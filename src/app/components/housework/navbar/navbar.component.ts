@@ -9,6 +9,12 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   
   _router : Router = inject(Router)
+
+  isMenuShowing = false
+
+  toggleMenu() {
+    this.isMenuShowing = !this.isMenuShowing
+  }
   
   home() {
     this._router.navigateByUrl('').then(() => window.location.reload())
