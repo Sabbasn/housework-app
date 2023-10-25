@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="title"><a (click)="home()">HouseworkApp</a></h1>
         <nav>
-            <a (click)="toggleMenu()" class="toggle-button">
+            <a (click)="toggleMenu()" class="toggle-button" [ngClass]="{'active': isMenuShowing}">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
