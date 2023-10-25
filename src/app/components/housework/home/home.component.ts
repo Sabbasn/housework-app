@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   _alert: AlertService = inject(AlertService)
 
   rooms : Room[] = []
-  newRoom : Room = new Room("", 0, [])
+  newRoom : Room = new Room()
   showNewCard = false;
 
   drop(event: CdkDragDrop<Room[]>) {
@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
     this._userService.getRooms().subscribe({
       next: (res) => {
         this.rooms = res
+        this.newRoom = new Room()
       },
       error: (err) => this._alert.setAlert(new Alert(err["error"]["message"], AlertStatus.Error))
     })

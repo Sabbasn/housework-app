@@ -16,8 +16,7 @@ import { AlertStatus } from 'src/models/util/alertStatus.enum';
 })
 export class RoomComponent implements OnInit {
   roomName: string = ""
-  choresActive: Chore[] = []
-  choresFinished: Chore[] = []
+  chores: Chore[] = []
   showNewCard: boolean = true
   newChore = new AddChore()
 
@@ -30,54 +29,30 @@ export class RoomComponent implements OnInit {
     this.updateChores()
   }
 
-  drop(event: CdkDragDrop<Chore[]>, finishedList?: any) {
-    if(event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex)
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      )
-      if (event.container === finishedList) {
-        var chore = event.container.data[event.currentIndex]
-        chore.status = Status.Finished
-        this._userService.updateChore(chore).subscribe({
-          next: (res) => console.log(res["data"]),
-          error: (err) => console.error(err),
-          complete: () => console.log("Chore updated!")
-        })
-      }
-    }
-  }
-
   updateChores() {
-    this.choresActive = []
-    this.choresFinished = []
+    this.chores = []
     this._userService.getChores(this.roomName).subscribe({
       next: (res) => {
         res.forEach(chore => {
           if(chore.status === Status.Active || chore.status === Status.Locked) {
-            this.choresActive.push(chore)
-          } else {
-            this.choresFinished.push(chore)
+            this.chores.push(chore)
           }
         })
-        this.choresActive.sort((a, b) => {
+        this.chores.sort((a, b) => {
           return a.status - b.status
         })
       }
     })
   }
 
-  onDoneClick(id: number) {
-    this._userService.removeChore(id).subscribe({
-      next: (res) => console.log(res),
-      error: (err) => console.warn(err),
-      complete: () => console.log("Successfully removed chore!")
+  onDoneClick(chore: Chore, choreElem: HTMLElement) {
+    choreElem.classList.add("hidden")
+    choreElem.classList.remove("active")
+    chore.status = Status.Finished
+    this._userService.updateChore(chore).subscribe({
+      error: () => this._alert.setAlert(new Alert("Couldn't complete chore, please try again..", AlertStatus.Warning)),
+      complete: () => this._alert.setAlert(new Alert(`Congratulations, You got ${chore.experienceReward}xp!`, AlertStatus.Success))
     })
-    location.reload()
   }
 
   showAddChore(form: Element) {

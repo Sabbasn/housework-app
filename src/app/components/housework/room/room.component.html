@@ -2,10 +2,11 @@
 <div class="container">
     <h1 id="title">{{ roomName }}</h1>
     <div class="chores">
-        <p *ngIf="choresActive.length < 1">Relax - you have no chores left here!</p>
-        <div class="chore" *ngFor="let chore of choresActive" appCardTilt>
+        <p *ngIf="chores.length < 1">Relax - you have no chores left here!</p>
+        <div #choreElem class="chore active" *ngFor="let chore of chores">
             <h2>{{ chore.name }}</h2>
             <p>{{ chore.description }}</p>
+            <button class="done-btn" (click)="onDoneClick(chore, choreElem)">✔</button>
         </div>
     </div>
 </div>
