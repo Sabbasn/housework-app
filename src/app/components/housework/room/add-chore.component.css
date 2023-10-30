@@ -4,9 +4,9 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     width: 300px;
     height: auto;
-    position: fixed;
+    position: absolute;
     bottom: 125px;
-    right: -350px;
+    right: -300px;
     flex-flow: column wrap;
     align-items: center;
     font-size: 1.3rem;
@@ -19,7 +19,7 @@
 
 .showing {
     opacity: 1;
-    right: 50px;
+    right: 25px;
 }
 
 @media (max-width: 500px) {
@@ -84,10 +84,10 @@
 .show-add-room {
     display: flex;
     align-items: center;
-    border: 1px white solid;
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
+    position: absolute;
+    border: 1px solid white;
+    bottom: 25px;
+    right: 25px;
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -140,3 +140,4 @@ button:hover > .bar {
 button.active > .bar:nth-child(1) {
     transform: rotateX(90deg);
 }
+

@@ -1,6 +1,9 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <h1 id="title">{{ roomName }}</h1>
+    <div class="container-top">
+        <button class="back-btn" routerLink="/">Back</button>
+        <h1 id="title">{{ roomName }}</h1>
+    </div>
     <div class="chores">
         <p *ngIf="chores.length < 1">Relax - you have no chores left here!</p>
         <div #choreElem class="chore active" *ngFor="let chore of chores">
@@ -9,13 +12,16 @@
             <button class="done-btn" (click)="onDoneClick(chore, choreElem)">✔</button>
         </div>
     </div>
+    <form #choreForm #addChoreForm="ngForm" class="show-new-card" (ngSubmit)="addChore()">
+        <h2>Add Chore</h2>
+        <label for="name">Name</label>
+        <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newChore.name">
+        <label for="description">Description</label>
+        <textarea placeholder="Description" name="description" [(ngModel)]="newChore.description"></textarea>
+        <button class="add-room">✔</button>
+    </form>
+    <button class="show-add-room" [ngClass]="{'active':!showNewCard}" (click)="showAddChore(choreForm)">
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
 </div>
-<form #choreForm #addChoreForm="ngForm" class="show-new-card" (ngSubmit)="addChore()">
-    <h2>Add Chore</h2>
-    <label for="name">Name</label>
-    <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newChore.name">
-    <label for="description">Description</label>
-    <textarea placeholder="Description" name="description" [(ngModel)]="newChore.description"></textarea>
-    <button class="add-room">✔</button>
-</form>
-<button class="show-add-room" (click)="showAddChore(choreForm)">+</button>

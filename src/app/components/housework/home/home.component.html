@@ -17,4 +17,7 @@
     <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newRoom.name">
     <button class="add-room">✔</button>
 </form>
-<button class="show-add-room" (click)="showAddRoom(roomForm)">+</button>
+<button class="show-add-room" [ngClass]="{'active':showNewCard}" (click)="showAddRoom(roomForm)">
+    <span class="bar"></span>
+    <span class="bar"></span>
+</button>

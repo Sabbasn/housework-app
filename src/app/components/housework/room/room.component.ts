@@ -12,7 +12,7 @@ import { AlertStatus } from 'src/models/util/alertStatus.enum';
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.css', '../home/add-room.component.css']
+  styleUrls: ['./room.component.css', './add-chore.component.css']
 })
 export class RoomComponent implements OnInit {
   roomName: string = ""
@@ -72,7 +72,8 @@ export class RoomComponent implements OnInit {
     this._userService.addChore(this.roomName, this.newChore).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.warn(err),
-      complete: () => { 
+      complete: () => {
+        this.newChore = new AddChore()
         console.log("Successfully added chore!")
         this.updateChores()
       }
