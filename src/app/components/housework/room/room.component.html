@@ -20,9 +20,12 @@
         <textarea placeholder="Description" name="description" [(ngModel)]="newChore.description"></textarea>
         <button class="add-room">✔</button>
     </form>
-    <button *ngIf="currentRoom.status == 3" class="show-add-room" [ngClass]="{'active':!showNewCard}" (click)="showAddChore(choreForm)">
+    <button *ngIf="currentRoom.status != 0" 
+    class="show-add-room" 
+    [ngClass]="{'active':!showNewCard}" 
+    (click)="showAddChore(choreForm)">
         <span class="bar"></span>
         <span class="bar"></span>
     </button>
-    <button *ngIf="currentRoom.status == 3" class="ready-btn" (click)="onReadyClick()">Ready</button>
+    <button *ngIf="currentRoom.status != 0" class="ready-btn" (click)="onReadyClick()">Ready</button>
 </div>
