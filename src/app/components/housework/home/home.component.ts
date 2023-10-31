@@ -40,6 +40,14 @@ export class HomeComponent implements OnInit {
     var elemToMove = this.rooms[event.previousIndex]
     this.rooms[event.previousIndex] = this.rooms[event.currentIndex]
     this.rooms[event.currentIndex] = elemToMove
+
+    for (let i = 0; i < this.rooms.length; i++) {
+      const r = this.rooms[i];
+      r.orderPriority = i
+      this._userService.updateRoom(r).subscribe({
+        complete: () => console.log(r.orderPriority)
+      })
+    }
   }
 
   ngOnInit(): void {
@@ -49,7 +57,9 @@ export class HomeComponent implements OnInit {
   updateRooms() {
     this._userService.getRooms().subscribe({
       next: (res) => {
-        this.rooms = res
+        this.rooms = res.sort((a, b) => {
+          return a.orderPriority - b.orderPriority
+        })
         this.newRoom = new Room()
       },
       error: (err) => this._alert.setAlert(new Alert(err["error"]["message"], AlertStatus.Error))

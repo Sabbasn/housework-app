@@ -40,7 +40,8 @@ export class UserService {
     const headers = this.headers
     const body = {
       'name' : room.name,
-      'status' : room.status
+      'status' : room.status,
+      'orderPriority' : room.orderPriority
     }
     return this.httpClient.put<Room>(this.apiUrl.concat(`Rooms/${room.id}`), body, {headers})
   }
@@ -53,7 +54,8 @@ export class UserService {
   updateChore(chore: Chore) : Observable<Service<Chore>> {
     const headers = this.headers
     const body = {
-      'status': chore.status
+      'status': chore.status,
+      'orderPriority': chore.orderPriority
     }
     return this.httpClient.put<Service<Chore>>(this.apiUrl.concat(`Chores/${chore.id}`), body, {headers})
   }

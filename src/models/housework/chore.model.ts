@@ -4,6 +4,7 @@ export class Chore {
         public name: string,
         public description: string,
         public status: number,
-        public experienceReward: number
+        public experienceReward: number,
+        public orderPriority: number = 0,
     ) {}
 }

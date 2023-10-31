@@ -6,5 +6,6 @@ export class Room {
         public name: "" = "",
         public status: number = 0,
         public chores: [] = [],
+        public orderPriority: number = 0,
     ) {}
 }

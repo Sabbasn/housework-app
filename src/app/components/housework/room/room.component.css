@@ -43,7 +43,6 @@
 
 .chore {
     display: block;
-    position: absolute;
     text-align: center;
     min-width: 300px;
     min-height: 300px;
@@ -54,7 +53,36 @@
     transition: all 500ms ease-in-out;
 }
 
+.chore-preview-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chore-preview-list.cdk-drop-list-dragging .chore.preview:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-preview {
+    display: none;
+}
+
+.cdk-drag-placeholder {
+    opacity: 1;
+}
+
+.chore.preview {
+    cursor: pointer;
+    position: relative;
+    min-height: 100px;
+}
+
 .chore.active {
+    position: absolute;
     transition: all 500ms ease-in-out;
 }
 

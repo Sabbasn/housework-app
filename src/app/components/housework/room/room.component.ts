@@ -41,7 +41,7 @@ export class RoomComponent implements OnInit {
         })
         
         this.chores.sort((a, b) => {
-          return a.status - b.status
+          return a.orderPriority - b.orderPriority
         })
       }
     })
@@ -53,15 +53,16 @@ export class RoomComponent implements OnInit {
       return
     }
     this.currentRoom.status = Status.Active
+    this.chores.reverse()
     this._userService.updateRoom(this.currentRoom).subscribe({
       error: () => this._alert.setAlert(new Alert('Could not ready up. Please try again.', AlertStatus.Error)),
       complete: () => console.log("Successfully changed status of room!")
     })
   }
 
-  onDoneClick(chore: Chore, choreElem: HTMLElement) {
-    choreElem.classList.add("hidden")
-    choreElem.classList.remove("active")
+  onDoneClick(chore: Chore) {
+    var indexToRemove = this.chores.indexOf(chore)
+    this.chores.splice(indexToRemove, 1)
     chore.status = Status.Finished
     this._userService.updateChore(chore).subscribe({
       error: () => this._alert.setAlert(new Alert("Couldn't complete chore, please try again..", AlertStatus.Warning)),
@@ -92,5 +93,14 @@ export class RoomComponent implements OnInit {
         this.updateChores()
       }
     })
+  }
+
+  choreDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.chores, event.previousIndex, event.currentIndex)
+    for (let i = 0; i < this.chores.length; i++) {
+      const c = this.chores[i];
+      c.orderPriority = i
+      this._userService.updateChore(c).subscribe()
+    }
   }
 }

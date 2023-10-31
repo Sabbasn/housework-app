@@ -5,12 +5,22 @@
         <h1 id="title">{{ currentRoom.name }}</h1>
     </div>
     <div class="chores">
-        <p *ngIf="chores.length < 1">Relax - you have no chores left here!</p>
-        <div #choreElem class="chore active" *ngFor="let chore of chores">
-            <h2>{{ chore.name }}</h2>
-            <p>{{ chore.description }}</p>
-            <button *ngIf="currentRoom.status == 0" class="done-btn" (click)="onDoneClick(chore, choreElem)">✔</button>
+        <div class="chore-preview-list" *ngIf="currentRoom.status != 0" cdkDropList
+            (cdkDropListDropped)="choreDrop($event)">
+            <div cdkDrag class="chore preview" *ngFor="let chore of chores">
+                <h2>{{ chore.name }}</h2>
+                <p>{{ chore.description }}</p>
+            </div>
         </div>
+        <p *ngIf="chores.length == 0">Relax - you have no chores left here!</p>
+        <div *ngIf="currentRoom.status == 0">
+            <div #choreElem class="chore active" *ngFor="let chore of chores">
+                <h2>{{ chore.name }}</h2>
+                <p>{{ chore.description }}</p>
+                <button *ngIf="currentRoom.status == 0" class="done-btn" (click)="onDoneClick(chore)">✔</button>
+            </div>
+        </div>
+
     </div>
     <form #choreForm #addChoreForm="ngForm" class="show-new-card" (ngSubmit)="addChore()">
         <h2>Add Chore</h2>
@@ -20,10 +30,8 @@
         <textarea placeholder="Description" name="description" [(ngModel)]="newChore.description"></textarea>
         <button class="add-room">✔</button>
     </form>
-    <button *ngIf="currentRoom.status != 0" 
-    class="show-add-room" 
-    [ngClass]="{'active':!showNewCard}" 
-    (click)="showAddChore(choreForm)">
+    <button *ngIf="currentRoom.status != 0" class="show-add-room" [ngClass]="{'active':!showNewCard}"
+        (click)="showAddChore(choreForm)">
         <span class="bar"></span>
         <span class="bar"></span>
     </button>
