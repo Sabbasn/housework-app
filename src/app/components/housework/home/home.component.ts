@@ -23,6 +23,19 @@ export class HomeComponent implements OnInit {
   newRoom : Room = new Room()
   showNewCard = false;
 
+  roomStatusColor(status: Status) {
+    switch (status) {
+      case Status.Active:
+        return '#036ffc'
+      case Status.Finished:
+        return 'var(--main-color)'
+      case Status.Locked:
+        return 'var(--locked-color)'
+      case Status.Preparing:
+        return '#e3801e'
+    }
+  }
+
   drop(event: CdkDragDrop<Room[]>) {
     var elemToMove = this.rooms[event.previousIndex]
     this.rooms[event.previousIndex] = this.rooms[event.currentIndex]
@@ -61,6 +74,7 @@ export class HomeComponent implements OnInit {
       this._alert.setAlert(new Alert("Room name can not be empty!", AlertStatus.Warning))
       return
     }
+
     this._userService.addRoom(this.newRoom).subscribe({
       error: (err) => this._alert.setAlert(new Alert(err["message"], AlertStatus.Error)),
       complete: () => this.updateRooms()
