@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
   }
 
   onRoomClick(room: Room) {
-    this._router.navigateByUrl(`/room/${room.name}`)
+    this._router.navigateByUrl(`/room/${room.name}`, { state: room })
   }
 
   showAddRoom(form: Element) {

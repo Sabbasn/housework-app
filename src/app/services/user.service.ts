@@ -36,6 +36,15 @@ export class UserService {
     return this.httpClient.post<Room>(this.apiUrl.concat(`Rooms`), body, {headers})
   }
 
+  updateRoom(room: Room) : Observable<Room> {
+    const headers = this.headers
+    const body = {
+      'name' : room.name,
+      'status' : room.status
+    }
+    return this.httpClient.put<Room>(this.apiUrl.concat(`Rooms/${room.id}`), body, {headers})
+  }
+
   getChores(roomName: string) : Observable<Chore[]> {
     const headers = this.headers
     return this.httpClient.get<Chore[]>(this.apiUrl.concat(`Chores/${roomName}`), {headers})

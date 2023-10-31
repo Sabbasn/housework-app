@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Chore } from 'src/models/housework/chore.model';
 import { AddChore } from 'src/models/housework/addChore.model';
 import { Status } from 'src/models/housework/status.enum';
@@ -8,6 +8,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Alert } from 'src/models/util/alert.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
+import { Room } from 'src/models/housework/room.model';
 
 @Component({
   selector: 'app-room',
@@ -15,7 +16,7 @@ import { AlertStatus } from 'src/models/util/alertStatus.enum';
   styleUrls: ['./room.component.css', './add-chore.component.css']
 })
 export class RoomComponent implements OnInit {
-  roomName: string = ""
+  currentRoom : Room = new Room()
   chores: Chore[] = []
   showNewCard: boolean = true
   newChore = new AddChore()
@@ -25,23 +26,36 @@ export class RoomComponent implements OnInit {
   _alert: AlertService = inject(AlertService)
   
   ngOnInit(): void {
-    this.roomName = this._route.snapshot.paramMap.get('name')?.toString()!
+    this.currentRoom = history.state
     this.updateChores()
   }
 
   updateChores() {
     this.chores = []
-    this._userService.getChores(this.roomName).subscribe({
+    this._userService.getChores(this.currentRoom.name).subscribe({
       next: (res) => {
         res.forEach(chore => {
           if(chore.status === Status.Active || chore.status === Status.Locked) {
             this.chores.push(chore)
           }
         })
+        
         this.chores.sort((a, b) => {
           return a.status - b.status
         })
       }
+    })
+  }
+
+  onReadyClick() {
+    if (this.chores.length == 0) {
+      this._alert.setAlert(new Alert('You must add atleast one chore in order to ready up!', AlertStatus.Error))
+      return
+    }
+    this.currentRoom.status = Status.Active
+    this._userService.updateRoom(this.currentRoom).subscribe({
+      error: () => this._alert.setAlert(new Alert('Could not ready up. Please try again.', AlertStatus.Error)),
+      complete: () => console.log("Successfully changed status of room!")
     })
   }
 
@@ -66,10 +80,10 @@ export class RoomComponent implements OnInit {
 
   addChore() {
     if (!this.newChore.name) {
-      this._alert.setAlert(new Alert("Name of chore can not be empty!", AlertStatus.Warning))
+      this._alert.setAlert(new Alert("The chore must have a name!", AlertStatus.Warning))
       return
     }
-    this._userService.addChore(this.roomName, this.newChore).subscribe({
+    this._userService.addChore(this.currentRoom.name, this.newChore).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.warn(err),
       complete: () => {

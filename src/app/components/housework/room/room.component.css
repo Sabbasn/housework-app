@@ -113,3 +113,12 @@
     background-color: transparent;
     text-decoration: underline;
 }
+
+.ready-btn {
+    position: absolute;
+    bottom: 25px;
+    background-color: var(--main-color);
+    border: 1px solid white;
+    border-radius: 0.6rem;
+    padding: 10px;
+}
