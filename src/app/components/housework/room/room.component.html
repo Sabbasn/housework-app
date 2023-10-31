@@ -2,6 +2,18 @@
 <div class="container">
     <div class="container-top">
         <button class="back-btn" routerLink="/">Back</button>
+        <a class="hamburger-menu" [ngClass]="{'activated' : hamburgerToggle}" (click)="toggleMenu()"
+        [cdkMenuTriggerFor]="roomOptions">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </a>
+        <ng-template #roomOptions>
+            <div class="room-options">
+                <button>Rename</button>
+                <button (click)="deleteRoom()">Delete</button>
+            </div>
+        </ng-template>
         <h1 id="title">{{ currentRoom.name }}</h1>
     </div>
     <div class="chores">

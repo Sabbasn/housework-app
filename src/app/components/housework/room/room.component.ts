@@ -13,16 +13,18 @@ import { Room } from 'src/models/housework/room.model';
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.css', './add-chore.component.css']
+  styleUrls: ['./room.component.css', './add-chore.component.css', './room-menu.component.css']
 })
 export class RoomComponent implements OnInit {
   currentRoom : Room = new Room()
   chores: Chore[] = []
   showNewCard: boolean = true
+  hamburgerToggle: boolean = false
   newChore = new AddChore()
 
   _userService: UserService = inject(UserService)
   _route: ActivatedRoute = inject(ActivatedRoute)
+  _router: Router = inject(Router)
   _alert: AlertService = inject(AlertService)
   
   ngOnInit(): void {
@@ -106,5 +108,16 @@ export class RoomComponent implements OnInit {
       c.orderPriority = i
       this._userService.updateChore(c).subscribe()
     }
+  }
+
+  toggleMenu() {
+    this.hamburgerToggle = !this.hamburgerToggle
+  }
+
+  deleteRoom() {
+    this._userService.deleteRoom(this.currentRoom.id).subscribe({
+      error: () => this._alert.setAlert(new Alert("An error occured trying to delete room. Please try again.", AlertStatus.Error)),
+      complete: () => this._router.navigateByUrl("/")
+    })
   }
 }

@@ -17,6 +17,7 @@ import { NotFoundComponent } from './components/util/not-found/not-found.compone
 import { AlertComponent } from './components/util/alert/alert.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkMenuModule } from '@angular/cdk/menu';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FormsModule,
     BrowserAnimationsModule,
     DragDropModule,
+    CdkMenuModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent]

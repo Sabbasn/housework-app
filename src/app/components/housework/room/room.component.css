@@ -123,12 +123,18 @@
 
 .container-top {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     width: 100%;
 }
 
 .back-btn {
     display: block;
+    margin-right: auto;
+    font-size: 1.2rem;
     box-shadow: none;
     background-color: transparent;
     height: 50px;
@@ -139,7 +145,6 @@
 
 .back-btn:hover {
     background-color: transparent;
-    text-decoration: underline;
 }
 
 .ready-btn {

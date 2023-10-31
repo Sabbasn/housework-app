@@ -1,0 +1,51 @@
+.hamburger-menu {
+    height: 30px;
+    margin-left: auto;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.hamburger-menu.activated > .dot:first-child {
+    width: 30px;
+    border-radius: 0.6rem;
+}
+
+.hamburger-menu.activated > .dot:nth-child(2) {
+    width: 20px;
+    border-radius: 0.6rem;
+}
+
+.hamburger-menu.activated > .dot:last-child {
+    width: 10px;
+    border-radius: 0.6rem;
+}
+
+.hamburger-menu:hover > .dot {
+    background-color: var(--main-color)
+}
+
+.dot {
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    background-color: white;
+    transition: all 250ms ease-in-out;
+}
+
+.room-options {
+    transition: all 250ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.6rem;
+    border: 1px solid white;
+}
+
+.room-options > button {
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+    background-color: rgb(40, 40, 40);
+}
