@@ -43,6 +43,10 @@ export class RoomComponent implements OnInit {
         this.chores.sort((a, b) => {
           return a.orderPriority - b.orderPriority
         })
+
+        if (this.currentRoom.status == Status.Active) {
+          this.chores.reverse()
+        }
       }
     })
   }
