@@ -18,7 +18,7 @@ import { Room } from 'src/models/housework/room.model';
 export class RoomComponent implements OnInit {
   currentRoom : Room = new Room()
   chores: Chore[] = []
-  showNewCard: boolean = true
+  showChoreForm: boolean = false
   hamburgerToggle: boolean = false
   newChore = new AddChore()
 
@@ -76,13 +76,8 @@ export class RoomComponent implements OnInit {
     })
   }
 
-  showAddChore(form: Element) {
-    if (this.showNewCard) {
-      form.classList.add("showing")
-    } else {
-      form.classList.remove("showing")
-    }
-    this.showNewCard = !this.showNewCard;
+  toggleChoreForm() {
+    this.showChoreForm = !this.showChoreForm;
   }
 
   addChore() {

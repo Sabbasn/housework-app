@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   rooms : Room[] = []
   newRoom : Room = new Room()
-  showNewCard = false;
+  showRoomForm = false;
 
   roomStatusColor(status: Status) {
     switch (status) {
@@ -70,13 +70,8 @@ export class HomeComponent implements OnInit {
     this._router.navigateByUrl(`/room/${room.name}`, { state: room })
   }
 
-  showAddRoom(form: Element) {
-    if (!this.showNewCard) {
-      form.classList.add("showing")
-    } else {
-      form.classList.remove("showing")
-    }
-    this.showNewCard = !this.showNewCard;
+  showAddRoom() {
+    this.showRoomForm = !this.showRoomForm;
   }
 
   addRoom() {

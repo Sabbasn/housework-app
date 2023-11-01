@@ -2,15 +2,14 @@
 <div class="container">
     <div class="container-top">
         <button class="back-btn" routerLink="/">Back</button>
-        <a class="hamburger-menu" [ngClass]="{'activated' : hamburgerToggle}" (click)="toggleMenu()"
-        [cdkMenuTriggerFor]="roomOptions">
+        <a #hamburgerMenu class="hamburger-menu" [cdkMenuTriggerFor]="roomOptions">
             <span class="dot"></span>
             <span class="dot"></span>
             <span class="dot"></span>
         </a>
         <ng-template #roomOptions>
-            <div class="room-options">
-                <button>Rename</button>
+            <div class="room-options" cdkMenu>
+                <button [disabled]="true">Rename</button>
                 <button (click)="deleteRoom()">Delete</button>
             </div>
         </ng-template>
@@ -32,9 +31,8 @@
                 <button *ngIf="currentRoom.status == 0" class="done-btn" (click)="onDoneClick(chore)">✔</button>
             </div>
         </div>
-
     </div>
-    <form #choreForm #addChoreForm="ngForm" class="show-new-card" (ngSubmit)="addChore()">
+    <form #addChoreForm="ngForm" class="show-new-card" [ngClass]="{'showing':showChoreForm}" (ngSubmit)="addChore()">
         <h2>Add Chore</h2>
         <label for="name">Name</label>
         <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newChore.name">
@@ -42,8 +40,9 @@
         <textarea placeholder="Description" name="description" [(ngModel)]="newChore.description"></textarea>
         <button class="add-room">✔</button>
     </form>
-    <button *ngIf="currentRoom.status != 0" class="show-add-room" [ngClass]="{'active':!showNewCard}"
-        (click)="showAddChore(choreForm)">
+    <button *ngIf="currentRoom.status != 0" class="show-add-room" [ngClass]="{'active':showChoreForm}"
+        appOutsideClick (clickOutside)="showChoreForm = false"
+        (click)="toggleChoreForm()">
         <span class="bar"></span>
         <span class="bar"></span>
     </button>

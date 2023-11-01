@@ -18,6 +18,7 @@ import { AlertComponent } from './components/util/alert/alert.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkMenuModule } from '@angular/cdk/menu';
+import { OutsideClickDirective } from './directives/outside-click.directive';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CdkMenuModule } from '@angular/cdk/menu';
     RoomComponent,
     NotFoundComponent,
     AlertComponent,
+    OutsideClickDirective,
   ],
   imports: [
     BrowserModule,

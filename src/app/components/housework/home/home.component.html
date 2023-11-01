@@ -11,13 +11,16 @@
         </div>
     </div>
 </div>
-<form #roomForm #addRoomForm="ngForm" class="show-new-card" (ngSubmit)="addRoom()">
+<form #addRoomForm="ngForm" class="show-new-card" [ngClass]="{'showing':showRoomForm}" (ngSubmit)="addRoom()">
     <h2>Add Room</h2>
     <label for="name">Name</label>
     <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newRoom.name">
     <button class="add-room">✔</button>
 </form>
-<button class="show-add-room" [ngClass]="{'active':showNewCard}" (click)="showAddRoom(roomForm)">
+<button class="show-add-room" 
+    appOutsideClick (clickOutside)="showRoomForm = false"
+    [ngClass]="{'active':showRoomForm}" 
+    (click)="showAddRoom()">
     <span class="bar"></span>
     <span class="bar"></span>
 </button>
