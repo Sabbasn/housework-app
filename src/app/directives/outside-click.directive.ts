@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 @Directive({
   selector: '[appOutsideClick]',
@@ -7,6 +7,8 @@ import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angu
 export class OutsideClickDirective {
 
   @Output() clickOutside = new EventEmitter<void>
+
+  @Input() countAsInside: Element[] = []
 
   _el: ElementRef
   public isOnTarget: boolean = false
@@ -17,7 +19,8 @@ export class OutsideClickDirective {
 
   @HostListener('document:click', ['$event.target'])
   onClick(target: any) {
-    this.isOnTarget = (target == this._el.nativeElement || this._el.nativeElement.contains(target))
+    this.countAsInside.push(this._el.nativeElement)
+    this.isOnTarget = this.countAsInside.some(e => e == target || e.contains(target))
     if (!this.isOnTarget) {
       this.clickOutside.emit()
     }
