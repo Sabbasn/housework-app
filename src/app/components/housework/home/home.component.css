@@ -6,6 +6,13 @@
     justify-content: center;
 }
 
+@media(max-width:500px) {
+    .container {
+        min-width: 200px;
+        max-width: 300px;
+    }
+}
+
 .title {
     text-align: center;
     border-bottom: 2px solid white
