@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, Injectable, OnInit, inject } from '@angular/core';
 import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/models/util/alert.model';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
@@ -11,10 +11,9 @@ import { AlertStatus } from 'src/models/util/alertStatus.enum';
 
 @Injectable()
 export class AlertComponent implements OnInit {
-  statusText = 'Test'
-  classes : Array<string> = ['container']
-  color = "var(--main-color)"
-  alert: Alert = new Alert()
+  alerts: Alert[] = []
+  duration = 5000
+  isShowing = false
   _alertService : AlertService = inject(AlertService)
 
   colorPicker(status: AlertStatus) {
@@ -31,24 +30,23 @@ export class AlertComponent implements OnInit {
   private delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
-  
-  async updateAlert() {
-    this.statusText = this.alert.text
-    this.color = this.colorPicker(this.alert.backgroundColor)
-    this.classes.push('show')
-    await this.delay(5000)
-    this.hide()
+
+  hide(alert: Alert) {
+    var idx = this.alerts.indexOf(alert);
+    this.alerts.splice(idx, 1)
   }
 
-  hide() {
-    var itemIndex = this.classes.indexOf('show')
-    this.classes = this.classes.filter((_, i) => i !== itemIndex)
+  async updateAlert(alert: Alert) {
+    await this.delay(this.duration)
+    alert.opacity = 0
+    await this.delay(1000)
+    this.alerts.pop()
   }
 
   ngOnInit(): void {
     this._alertService.getAlert().subscribe((alert) => {
-      this.alert = alert
-      this.updateAlert()
+      this.alerts.unshift(alert)
+      this.updateAlert(alert)
     })
   }
 }

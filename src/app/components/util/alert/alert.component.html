@@ -1,4 +1,9 @@
-<div #notification [ngClass]="classes" [style.backgroundColor]="color">
-    <p>{{ statusText }}</p>
-    <button (click)="hide()">X</button>
+<div class="container show">
+    <div #alertElem class="alert"
+        *ngFor="let alert of alerts"
+        [ngStyle]="{'opacity': alert.opacity}"
+        [style.backgroundColor]="colorPicker(alert.backgroundColor)">
+        <p>{{ alert.text }}</p>
+        <button (click)="hide(alert)">X</button>
+    </div>
 </div>
