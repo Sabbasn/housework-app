@@ -1,11 +1,10 @@
-import { Component, ElementRef, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chore } from 'src/models/housework/chore.model';
 import { AddChore } from 'src/models/housework/addChore.model';
 import { Status } from 'src/models/housework/status.enum';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Alert } from 'src/models/util/alert.model';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertService } from 'src/app/services/alert.service';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
 import { Room } from 'src/models/housework/room.model';
@@ -55,13 +54,13 @@ export class RoomComponent implements OnInit {
 
   onReadyClick() {
     if (this.chores.length == 0) {
-      this._alert.setAlert(new Alert('You must add atleast one chore in order to ready up!', AlertStatus.Error))
+      this._alert.alert('You must add atleast one chore in order to ready up!', AlertStatus.Error)
       return
     }
     this.currentRoom.status = Status.Active
     this.chores.reverse()
     this._userService.updateRoom(this.currentRoom).subscribe({
-      error: () => this._alert.setAlert(new Alert('Could not ready up. Please try again.', AlertStatus.Error)),
+      error: () => this._alert.alert('Could not ready up. Please try again.', AlertStatus.Error),
       complete: () => console.log("Successfully changed status of room!")
     })
   }
@@ -71,8 +70,8 @@ export class RoomComponent implements OnInit {
     this.chores.splice(indexToRemove, 1)
     chore.status = Status.Finished
     this._userService.updateChore(chore).subscribe({
-      error: () => this._alert.setAlert(new Alert("Couldn't complete chore, please try again..", AlertStatus.Warning)),
-      complete: () => this._alert.setAlert(new Alert(`Congratulations, You got ${chore.experienceReward}xp!`, AlertStatus.Success))
+      error: () => this._alert.alert("Couldn't complete chore, please try again..", AlertStatus.Warning),
+      complete: () => this._alert.alert(`Congratulations, You got ${chore.experienceReward}xp!`, AlertStatus.Success)
     })
   }
 
@@ -82,7 +81,7 @@ export class RoomComponent implements OnInit {
 
   addChore() {
     if (!this.newChore.name) {
-      this._alert.setAlert(new Alert("The chore must have a name!", AlertStatus.Warning))
+      this._alert.alert("The chore must have a name!", AlertStatus.Warning)
       return
     }
     this._userService.addChore(this.currentRoom.name, this.newChore).subscribe({
@@ -101,8 +100,8 @@ export class RoomComponent implements OnInit {
       this.currentRoom.name = title.value
       title.blur()
       this._userService.updateRoom(this.currentRoom).subscribe({
-        error: () => this._alert.setAlert(new Alert("Could not rename the room, please try again.", AlertStatus.Error)),
-        complete: () => this._alert.setAlert(new Alert("Successfully renamed the room!", AlertStatus.Success))
+        error: () => this._alert.alert("Could not rename the room, please try again.", AlertStatus.Error),
+        complete: () => this._alert.alert("Successfully renamed the room!", AlertStatus.Success)
       })
     }
   }
@@ -122,7 +121,7 @@ export class RoomComponent implements OnInit {
 
   deleteRoom() {
     this._userService.deleteRoom(this.currentRoom.id).subscribe({
-      error: () => this._alert.setAlert(new Alert("An error occured trying to delete room. Please try again.", AlertStatus.Error)),
+      error: () => this._alert.alert("An error occured trying to delete room. Please try again.", AlertStatus.Error),
       complete: () => this._router.navigateByUrl("/")
     })
   }

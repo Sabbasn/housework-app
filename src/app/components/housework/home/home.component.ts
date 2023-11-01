@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/models/util/alert.model';
 import { Status } from 'src/models/housework/status.enum';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
 
 @Component({
@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
         })
         this.newRoom = new Room()
       },
-      error: (err) => this._alert.setAlert(new Alert(err["error"]["message"], AlertStatus.Error))
+      error: (err) => this._alert.alert(err["error"]["message"], AlertStatus.Error)
     })
   }
 
@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
 
   addRoom() {
     if (!this.newRoom.name) {
-      this._alert.setAlert(new Alert("Room name can not be empty!", AlertStatus.Warning))
+      this._alert.alert("Room name can not be empty!", AlertStatus.Warning)
       return
     }
 
