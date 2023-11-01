@@ -1,4 +1,4 @@
-import { Component, ElementRef, Injectable, OnInit, inject } from '@angular/core';
+import { Component, Injectable, OnInit, inject } from '@angular/core';
 import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/models/util/alert.model';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
