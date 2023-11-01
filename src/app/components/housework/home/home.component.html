@@ -1,6 +1,10 @@
 <app-navbar></app-navbar>
 <div class="container">
     <h2 class="title">Rooms</h2>
+    <p class="info-text" *ngIf="rooms.length == 0">
+        It seems you have no rooms to work with - no worries! <br>
+        Create a room by pressing the green button in the bottom right corner.
+    </p>
     <div class="card-list" cdkDropList (cdkDropListDropped)="drop($event)">
         <div #card class="card" *ngFor="let room of rooms" appCardTilt [card]="card" (click)="onRoomClick(room)"
             [ngStyle]="{'background-color': roomStatusColor(room.status)}" cdkDrag>
