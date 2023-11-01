@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, OnInit, inject } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chore } from 'src/models/housework/chore.model';
@@ -94,6 +94,17 @@ export class RoomComponent implements OnInit {
         this.updateChores()
       }
     })
+  }
+
+  renameRoom(event: KeyboardEvent, title: HTMLInputElement) {
+    if (event.code == "Enter") {
+      this.currentRoom.name = title.value
+      title.blur()
+      this._userService.updateRoom(this.currentRoom).subscribe({
+        error: () => this._alert.setAlert(new Alert("Could not rename the room, please try again.", AlertStatus.Error)),
+        complete: () => this._alert.setAlert(new Alert("Successfully renamed the room!", AlertStatus.Success))
+      })
+    }
   }
 
   choreDrop(event: CdkDragDrop<string[]>) {

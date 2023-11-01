@@ -8,12 +8,12 @@
             <span class="dot"></span>
         </a>
         <ng-template #roomOptions>
-            <div class="room-options" cdkMenu>
-                <button [disabled]="true">Rename</button>
-                <button (click)="deleteRoom()">Delete</button>
+            <div class="menu-options" cdkMenu>
+                <button cdkMenuItem (click)="deleteRoom()">Delete</button>
             </div>
         </ng-template>
-        <h1 id="title">{{ currentRoom.name }}</h1>
+        <input #title id="title" [value]="currentRoom.name" 
+        (keyup)="renameRoom($event, title)">
     </div>
     <div class="chores">
         <div class="chore-preview-list" *ngIf="currentRoom.status != 0" cdkDropList

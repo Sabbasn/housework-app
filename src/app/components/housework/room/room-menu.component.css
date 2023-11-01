@@ -20,7 +20,7 @@
     transition: all 250ms ease-in-out;
 }
 
-.room-options {
+.menu-options {
     transition: all 250ms ease-in-out;
     display: flex;
     flex-direction: column;
@@ -28,13 +28,21 @@
     border: 1px solid white;
 }
 
-.room-options > button {
+.menu-options > button {
     height: 100%;
     width: 100%;
     padding: 15px;
     background-color: rgb(40, 40, 40);
 }
 
-.room-options > button:disabled {
+.menu-options > button:disabled {
     cursor: not-allowed;
+}
+
+.container-top > input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    font-weight: bold;
 }
