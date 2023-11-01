@@ -37,7 +37,7 @@
     min-height: 100px;
     cursor: pointer;
     background-color: var(--main-color);
-    border-radius: 0.6rem
+    border-radius: 0.6rem;
 }
 
 .card > .info-display {

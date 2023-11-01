@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/models/util/alert.model';
 import { Status } from 'src/models/housework/status.enum';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
 
 @Component({
@@ -37,9 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Room[]>) {
-    var elemToMove = this.rooms[event.previousIndex]
-    this.rooms[event.previousIndex] = this.rooms[event.currentIndex]
-    this.rooms[event.currentIndex] = elemToMove
+    moveItemInArray(this.rooms, event.previousIndex, event.currentIndex)
 
     for (let i = 0; i < this.rooms.length; i++) {
       const r = this.rooms[i];

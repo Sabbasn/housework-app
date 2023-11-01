@@ -6,7 +6,7 @@
         Create a room by pressing the green button in the bottom right corner.
     </p>
     <div class="card-list" cdkDropList (cdkDropListDropped)="drop($event)">
-        <div #card class="card" *ngFor="let room of rooms" appCardTilt [card]="card" (click)="onRoomClick(room)"
+        <div #card class="card" *ngFor="let room of rooms" (click)="onRoomClick(room)"
             [ngStyle]="{'background-color': roomStatusColor(room.status)}" cdkDrag>
             <div class="info-display">
                 <h2>{{ room.name }}</h2>
