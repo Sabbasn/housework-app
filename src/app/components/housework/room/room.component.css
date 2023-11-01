@@ -77,7 +77,8 @@
 }
 
 .cdk-drag-placeholder {
-    opacity: 0;
+    background-color: transparent;
+    border: 2px white dotted;
 }
 
 .chore.preview {
