@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserRegister } from 'src/models/auth/userRegister.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert.service';
+import { AlertStatus } from 'src/models/util/alertStatus.enum';
 
 @Component({
   selector: 'app-register',
@@ -10,37 +12,36 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
-  constructor(
-    private _auth: AuthService,
-    private _route: Router
-    ) {}
+  _auth: AuthService = inject(AuthService)
+  _router: Router = inject(Router)
+  _alert: AlertService = inject(AlertService)
 
   user = new UserRegister()
-  errorMessage = "";
   processPart = 0
-
-  actualPass = ""
-  confirmPass = ""
-  passwordCorrect = false
 
   onSubmit() {
     if (this.processPart == 0 || this.processPart == 1) {
       this.processPart ++;
       return;
     }
+
     this._auth.register(this.user).subscribe({
-      next: (res) => this.onRegistered(res),
-      error: (err) => this.errorMessage = err["error"]["message"],
-      complete: () => console.log("Http Request Complete.")
+      error: (err) => this._alert.alert(err["error"]["message"], AlertStatus.Error),
+      complete: () =>  {
+        this._alert.alert("Successfully created account!", AlertStatus.Success)
+        this._router.navigate(["/login"])
+      }
     })
   }
 
   passwordChecker(actual: string, confirm: string) {
-    this.passwordCorrect = (actual === confirm)
+    return (actual === confirm)
   }
 
-  onRegistered(res: any) {
-    alert("Account created!")
-    this._route.navigate(["/login"])
+  onBackClick() {
+    if (this.processPart != 0) {
+      this.processPart = this.processPart - 1
+    }
+
   }
 }

@@ -1,0 +1,12 @@
+#back-btn {
+    color: white;
+    background-color: transparent;
+    margin: 0 auto;
+    margin-top: 5%;
+    box-sizing: content-box;
+}
+
+#back-btn:hover {
+    cursor: pointer;
+    color: var(--main-color);
+}

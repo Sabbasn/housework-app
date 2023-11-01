@@ -4,7 +4,6 @@
     <form #registerForm="ngForm" *ngIf="processPart == 0" (ngSubmit)="onSubmit()">
         <input placeholder="First Name" type="text" required [(ngModel)]="user.firstName" name="firstName">
         <input placeholder="Last Name" type="text" required [(ngModel)]="user.lastName" name="lastName">
-        <p style="color: red;">{{ errorMessage }}</p>
         <button [disabled]="!registerForm.form.valid" type="submit">Continue</button>
     </form>
     <form #registerFormP2="ngForm" *ngIf="processPart == 1" (ngSubmit)="onSubmit()">
@@ -13,9 +12,10 @@
         <button [disabled]="!registerFormP2.form.valid" type="submit">Continue</button>
     </form>
     <form #registerFormP3="ngForm" *ngIf="processPart == 2" (ngSubmit)="onSubmit()">
-        <input (keyup)="passwordChecker(password.value, confirmPassword.value)" #password placeholder="Password" type="password" required [(ngModel)]="user.password" name="password">
-        <input (keyup)="passwordChecker(password.value, confirmPassword.value)" #confirmPassword placeholder="Confirm Password" type="password" required name="confirmPassword">
-        <button [disabled]="!registerFormP3.form.valid || !passwordCorrect" type="submit">Register</button>
+        <input #password placeholder="Password" type="password" required [(ngModel)]="user.password" name="password">
+        <input #confirmPassword placeholder="Confirm Password" type="password" required name="confirmPassword">
+        <button [disabled]="!registerFormP3.form.valid || !passwordChecker(password.value, confirmPassword.value)" type="submit">Register</button>
     </form>
+    <a id="back-btn" (click)="onBackClick()">Back</a>
     <p>Already have an account? <a routerLink="/login">Log In</a>!</p>
 </div>

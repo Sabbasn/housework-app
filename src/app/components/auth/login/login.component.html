@@ -5,7 +5,6 @@
         <input required placeholder="Email" type="email" name="email" [(ngModel)]="user.email">
         <input required placeholder="Password" type="password" name="password" [(ngModel)]="user.password">
         <br>
-        <!-- <p style="color: red;">{{ errorText }}</p> -->
         <button [disabled]="!loginForm.form.valid || isLoggingIn" type="submit">Log In</button>
         <p>Don't have an account? <a routerLink="/register">Create one</a>!</p>
     </form>
