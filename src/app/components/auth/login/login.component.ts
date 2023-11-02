@@ -40,11 +40,10 @@ export class LoginComponent implements OnInit {
       next: (res) => this.onSuccess(res),
       error: (err) => { 
         this.errorText = err["error"]["message"]
-        if (!this.errorText) {
+        if (this.errorText.length == 0) {
           this.errorText = 'Login failed. Please try again.'
         }
-        const alert = new Alert(this.errorText, AlertStatus.Error)
-        this._alert.setAlert(alert)
+        this._alert.alert(this.errorText, AlertStatus.Error)
         this.isLoggingIn = false
       },
       complete: () => this.isLoggingIn = false
