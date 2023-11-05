@@ -81,9 +81,9 @@ export class RoomComponent implements OnInit {
     this._userService.updateChore(chore).subscribe({
       error: () => this._alert.alert("Couldn't complete chore, please try again..", AlertStatus.Warning),
       complete: () => {
-        this._alert.alert(`Congratulations, You got ${chore.experienceReward}xp!`, AlertStatus.Success)
-        this.updateChores()
+        this._alert.alert(`You received ${chore.experienceReward} experience!`, AlertStatus.Success)
         this._audio.playAudio(AudioCue.CHORE_FINISH)
+        this.updateChores()
       }
     })
     if (this.chores.length == 0) {
