@@ -8,6 +8,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertService } from 'src/app/services/alert.service';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
 import { Room } from 'src/models/housework/room.model';
+import { AudioService } from 'src/app/services/audio.service';
+import { AudioCue } from 'src/models/housework/audioCue';
 
 @Component({
   selector: 'app-room',
@@ -24,6 +26,7 @@ export class RoomComponent implements OnInit {
   _route: ActivatedRoute = inject(ActivatedRoute)
   _router: Router = inject(Router)
   _alert: AlertService = inject(AlertService)
+  _audio: AudioService = inject(AudioService)
   
   ngOnInit(): void {
     this.currentRoom = history.state
@@ -80,6 +83,7 @@ export class RoomComponent implements OnInit {
       complete: () => {
         this._alert.alert(`Congratulations, You got ${chore.experienceReward}xp!`, AlertStatus.Success)
         this.updateChores()
+        this._audio.playAudio(AudioCue.CHORE_FINISH)
       }
     })
     if (this.chores.length == 0) {
