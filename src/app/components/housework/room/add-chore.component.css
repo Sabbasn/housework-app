@@ -1,88 +1,4 @@
-.show-new-card {
-    display: flex;
-    opacity: 0;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    width: 250px;
-    height: auto;
-    position: absolute;
-    bottom: 75px;
-    flex-flow: column wrap;
-    align-items: center;
-    font-size: 1.3rem;
-    padding: 20px;
-    background-color: rgb(40, 40, 40);
-    border: 2px solid rgb(70, 70, 70);
-    border-radius: 0.6rem;
-    transition: 0.3s;
-    scale: 0;
-}
-
-.showing {
-    opacity: 1;
-    scale: 1;
-}
-
-@media (max-width: 500px) {
-    .showing {
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        opacity: 1;
-        scale: 1;
-    }
-}
-
-.show-new-card h2 { 
-    margin: 0 0 30px 0;
-}
-
-.show-new-card input {
-    caret-color: var(--main-color);
-    font-size: 1.1rem;
-    border: none;
-    width: 70%;
-    padding: 10px 10px;
-    margin: auto auto 20px auto;
-    transition: 0.4s;
-    background-color: transparent;
-    outline: 1px solid grey;
-    border-radius: 5px;
-}
-
-.show-new-card input:hover {
-    outline: 1px solid white;
-}
-
-.show-new-card input:focus {
-    outline: 1px solid var(--main-color);   
-}
-
-.show-new-card textarea:hover {
-    outline: 1px solid white;
-}
-
-.show-new-card textarea:focus {
-    outline: 1px solid var(--main-color);
-}
-
-.show-new-card textarea {
-    caret-color: var(--main-color);
-    font-size: 1.1rem;
-    border: none;
-    width: 70%;
-    padding: 10px 10px;
-    margin: auto auto 20px auto;
-    transition: 0.4s;
-    background-color: transparent;
-    outline: 1px solid grey;
-    border-radius: 5px;
-}
-
-.show-new-card label {
-    margin-bottom: 10px;
-}
-
-.show-add-room {
+.add-room-btn {
     display: flex;
     align-items: center;
     position: absolute;
@@ -92,7 +8,12 @@
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    background-color: var(--main-color);
+    background-color: rgb(40, 40, 40);
+    box-shadow: 0px 0px 0px 0px #ffffff;
+}
+
+.add-room-btn:hover {
+    box-shadow: 0px 0px 9px 4px #ffffff;
 }
 
 .bar {
@@ -109,16 +30,6 @@
 
 .bar:nth-child(1) {
     transform: rotateZ(90deg);
-}
-
-.add-room {
-    margin-top: 10px;
-    padding: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: var(--main-color);
-    color: white;
 }
 
 button {

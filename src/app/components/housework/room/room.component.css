@@ -43,6 +43,7 @@
 
 .chore {
     display: block;
+    position: relative;
     box-sizing: border-box;
     text-align: center;
     min-width: 300px;
@@ -61,7 +62,45 @@
 }
 
 .chore.preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     transition: none;
+}
+
+.chore.preview > .chore-priority {
+    position: absolute;
+    left: 5px;
+    top: 0px;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.cdk-drag.chore.preview > input, .cdk-drag.chore.preview > textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0.6rem;
+    background-color: transparent;
+    width: 75%;
+    border: none;
+    outline: none;
+    text-align: center;
+    resize: none;
+}
+
+.cdk-drag.chore.preview > input.chore-name { 
+    margin-top: 15px;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.cdk-drag.chore.preview > input::placeholder, textarea::placeholder { 
+    text-align: center;
+}
+
+.cdk-drag.chore.preview > textarea.chore-desc {
+    font-size: 1.3rem;
 }
 
 .chore-preview-list.cdk-drop-list-dragging .chore.preview:not(.cdk-drag-placeholder) {
@@ -108,19 +147,31 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.done-btn {
+.remove-btn {
+    color: black;
     transition: 0.4s;
-    position: absolute;
     align-self: center;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    bottom: 30px;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background-color: var(--main-color);
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 25px;
+    width: 25px;
+    background-color: transparent;
+}
+
+.done-btn {
+    box-sizing: border-box;
+    background-color: rgb(40, 40, 40);
     border: 1px solid white;
+    transition: all 400ms ease-in-out;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.remove-btn:hover {
+    color: white
 }
 
 .chore.hidden {
@@ -158,4 +209,8 @@
     border: 1px solid white;
     border-radius: 0.6rem;
     padding: 10px;
+}
+
+.experience-txt {
+    font-size: 1rem !important;
 }

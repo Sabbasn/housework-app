@@ -12,39 +12,40 @@
                 <button cdkMenuItem (click)="deleteRoom()">Delete</button>
             </div>
         </ng-template>
-        <input #title id="title" [value]="currentRoom.name" 
-        (keyup)="renameRoom($event, title)">
+        <input #title id="title" [value]="currentRoom.name" (blur)="renameRoom(title)">
     </div>
     <div class="chores">
+        <p *ngIf="currentRoom.status == 1">
+            You have no chores left here!<br> Press the 'start'-button below to plan your cleaning journey
+        </p>
+        <p *ngIf="currentRoom.status == 3 && chores.length == 0">
+            Press the '+'-button on the bottom right of this card to add a chore to your room. <br>
+            When you feel happy about your chores, hit the 'start'-button to begin!
+        </p>
         <div class="chore-preview-list" *ngIf="currentRoom.status != 0" cdkDropList
             (cdkDropListDropped)="choreDrop($event)">
-            <div cdkDrag class="chore preview" *ngFor="let chore of chores">
-                <h2>{{ chore.name }}</h2>
-                <p>{{ chore.description }}</p>
+            <div cdkDrag class="chore preview" *ngFor="let chore of chores; index as i">
+                <p class="chore-priority">#{{ i + 1 }}</p>
+                <input #choreName class="chore-name" [value]="chore.name"
+                    (blur)="renameChore(chore, choreName.value, choreDesc.value)">
+                <textarea #choreDesc autosize class="chore-desc" placeholder="Description text"
+                    (blur)="renameChore(chore, choreName.value, choreDesc.value)">{{chore.description}}</textarea>
+                <a class="remove-btn" (click)="removeChore(chore)">X</a>
             </div>
         </div>
-        <p *ngIf="chores.length == 0">Relax - you have no chores left here!</p>
         <div *ngIf="currentRoom.status == 0">
             <div #choreElem class="chore active" *ngFor="let chore of chores">
                 <h2>{{ chore.name }}</h2>
                 <p>{{ chore.description }}</p>
+                <p class="experience-txt">Experience: {{ chore.experienceReward }}</p>
                 <button *ngIf="currentRoom.status == 0" class="done-btn" (click)="onDoneClick(chore)">✔</button>
             </div>
         </div>
     </div>
-    <form #choreForm #addChoreForm="ngForm" class="show-new-card" [ngClass]="{'showing':showChoreForm}" (ngSubmit)="addChore()">
-        <h2>Add Chore</h2>
-        <label for="name">Name</label>
-        <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newChore.name">
-        <label for="description">Description</label>
-        <textarea placeholder="Description" name="description" [(ngModel)]="newChore.description"></textarea>
-        <button class="add-room">✔</button>
-    </form>
-    <button *ngIf="currentRoom.status != 0" class="show-add-room" [ngClass]="{'active':showChoreForm}"
-        appOutsideClick (clickOutside)="showChoreForm = false" [countAsInside]="[choreForm]"
-        (click)="toggleChoreForm()">
+    <button *ngIf="currentRoom.status == 3" class="add-room-btn" (click)="addChore()">
         <span class="bar"></span>
         <span class="bar"></span>
     </button>
-    <button *ngIf="currentRoom.status != 0" class="ready-btn" (click)="onReadyClick()">Ready</button>
+    <button *ngIf="currentRoom.status != 3" class="ready-btn" (click)="prepareChores()">Start</button>
+    <button *ngIf="currentRoom.status == 3" class="ready-btn" (click)="executeChores()">Start</button>
 </div>

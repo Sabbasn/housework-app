@@ -60,7 +60,9 @@ export class UserService {
     const headers = this.headers
     const body = {
       'status': chore.status,
-      'orderPriority': chore.orderPriority
+      'orderPriority': chore.orderPriority,
+      'name': chore.name,
+      'description': chore.description,
     }
     return this.httpClient.put<Service<Chore>>(this.apiUrl.concat(`Chores/${chore.id}`), body, {headers})
   }

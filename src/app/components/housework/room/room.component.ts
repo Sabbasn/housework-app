@@ -19,7 +19,6 @@ export class RoomComponent implements OnInit {
   chores: Chore[] = []
   showChoreForm: boolean = false
   hamburgerToggle: boolean = false
-  newChore = new AddChore()
 
   _userService: UserService = inject(UserService)
   _route: ActivatedRoute = inject(ActivatedRoute)
@@ -52,16 +51,23 @@ export class RoomComponent implements OnInit {
     })
   }
 
-  onReadyClick() {
+  prepareChores() {
+    this.currentRoom.status = Status.Preparing
+    this._userService.updateRoom(this.currentRoom).subscribe({
+      error: () => this._alert.alert('Could not start. Please try again.', AlertStatus.Error),
+      complete: () => console.log("Successfully changed status of room!")
+    })
+  }
+
+  executeChores() {
     if (this.chores.length == 0) {
-      this._alert.alert('You must add atleast one chore in order to ready up!', AlertStatus.Error)
+      this._alert.alert("You must add atleast one chore in order to start!", AlertStatus.Warning)
       return
     }
     this.currentRoom.status = Status.Active
-    this.chores.reverse()
     this._userService.updateRoom(this.currentRoom).subscribe({
-      error: () => this._alert.alert('Could not ready up. Please try again.', AlertStatus.Error),
-      complete: () => console.log("Successfully changed status of room!")
+      error: () => this._alert.alert('Could not start your cleaning journey. Please try again.', AlertStatus.Error),
+      complete: () => this.chores.reverse()
     })
   }
 
@@ -71,39 +77,62 @@ export class RoomComponent implements OnInit {
     chore.status = Status.Finished
     this._userService.updateChore(chore).subscribe({
       error: () => this._alert.alert("Couldn't complete chore, please try again..", AlertStatus.Warning),
-      complete: () => this._alert.alert(`Congratulations, You got ${chore.experienceReward}xp!`, AlertStatus.Success)
+      complete: () => {
+        this._alert.alert(`Congratulations, You got ${chore.experienceReward}xp!`, AlertStatus.Success)
+        this.updateChores()
+      }
     })
-  }
-
-  toggleChoreForm() {
-    this.showChoreForm = !this.showChoreForm;
+    if (this.chores.length == 0) {
+      this.currentRoom.status = Status.Finished
+      this._userService.updateRoom(this.currentRoom).subscribe()
+    }
   }
 
   addChore() {
-    if (!this.newChore.name) {
-      this._alert.alert("The chore must have a name!", AlertStatus.Warning)
-      return
-    }
-    this._userService.addChore(this.currentRoom.name, this.newChore).subscribe({
+    var choreName = `Chore ${this.chores.length + 1}`
+    var choreDesc = ''
+    var chore = new AddChore(
+      choreName,
+      choreDesc,
+      Status.Active
+    )
+    this._userService.addChore(this.currentRoom.name, chore).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.warn(err),
       complete: () => {
-        this.newChore = new AddChore()
         console.log("Successfully added chore!")
         this.updateChores()
       }
     })
   }
 
-  renameRoom(event: KeyboardEvent, title: HTMLInputElement) {
-    if (event.code == "Enter") {
-      this.currentRoom.name = title.value
-      title.blur()
-      this._userService.updateRoom(this.currentRoom).subscribe({
-        error: () => this._alert.alert("Could not rename the room, please try again.", AlertStatus.Error),
-        complete: () => this._alert.alert("Successfully renamed the room!", AlertStatus.Success)
-      })
+  removeChore(chore: Chore) {
+    this._userService.removeChore(chore.id).subscribe({
+      error: () => this._alert.alert("Couldn't delete chore. Please try again.", AlertStatus.Error),
+      complete: () => this.updateChores()
+    })
+  }
+
+  renameChore(chore: Chore, name: string, desc: string) {
+    if(chore.name == name && chore.description == desc) {
+      return
     }
+    chore.name = name
+    chore.description = desc
+    this._userService.updateChore(chore).subscribe({
+      error: () => this._alert.alert("An error occured renaming your chore.", AlertStatus.Error),
+    })
+  }
+
+  renameRoom(title: HTMLInputElement) {
+    if (this.currentRoom.name == title.value) {
+      return
+    }
+    this.currentRoom.name = title.value
+    this._userService.updateRoom(this.currentRoom).subscribe({
+      error: () => this._alert.alert("Could not rename the room, please try again.", AlertStatus.Error),
+      complete: () => this._alert.alert("Successfully renamed the room!", AlertStatus.Success)
+    })
   }
 
   choreDrop(event: CdkDragDrop<string[]>) {
