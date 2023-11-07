@@ -2,7 +2,7 @@
     <label for="color-input">
         <mat-icon class="icon" [ngStyle]="{'color': 'white'}">colorize</mat-icon>
     </label>
-    <input id="color-input" [(ngModel)]="roomColor" type="color" [value]="roomColor"
+    <input id="color-input" name="roomColor" [(ngModel)]="roomColor" type="color" [value]="roomColor"
     (ngModelChange)="updateColor()">
 </div>
 

@@ -7,23 +7,12 @@
     </p>
     <div class="card-list" cdkDropList (cdkDropListDropped)="drop($event)">
         <app-card *ngFor="let room of rooms" [room]="room"></app-card>
-        <!--
-        <div #card class="card" *ngFor="let room of rooms"
-        [ngStyle]="{'background-color': room.color}" cdkDrag>
-            <app-color-picker [(roomColor)]="room.color"
-                (change)="changeRoomColor(room)"></app-color-picker>
-            <div class="info-display" (click)="onRoomClick(room)">
-                <h2>{{ room.name }}</h2>
-                <p>{{ room.status | status }}</p>
-            </div>
-        </div>
-        -->
     </div>
 </div>
 <form #roomForm #addRoomForm="ngForm" class="show-new-card" [ngClass]="{'showing':showRoomForm}" (ngSubmit)="addRoom()">
     <h2>Add Room</h2>
     <label for="name">Name</label>
-    <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newRoom.name">
+    <input id="name" placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newRoom.name">
     <button class="add-room">✔</button>
 </form>
 <button class="show-add-room" appOutsideClick (clickOutside)="showRoomForm = false" [countAsInside]="[roomForm]"

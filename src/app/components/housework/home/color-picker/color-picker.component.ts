@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Room } from 'src/models/housework/room.model';
 
 @Component({
   selector: 'app-color-picker',
