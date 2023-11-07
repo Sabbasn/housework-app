@@ -1,0 +1,11 @@
+.color-picker {
+    display: flex;
+}
+
+.color-picker label {
+    cursor: pointer;
+}
+
+.color-picker input {
+    visibility: hidden;
+}

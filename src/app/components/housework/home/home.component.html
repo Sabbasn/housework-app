@@ -6,13 +6,18 @@
         Create a room by pressing the green button in the bottom right corner.
     </p>
     <div class="card-list" cdkDropList (cdkDropListDropped)="drop($event)">
-        <div #card class="card" *ngFor="let room of rooms" (click)="onRoomClick(room)"
-            [ngStyle]="{'background-color': roomStatusColor(room.status)}" cdkDrag>
-            <div class="info-display">
+        <app-card *ngFor="let room of rooms" [room]="room"></app-card>
+        <!--
+        <div #card class="card" *ngFor="let room of rooms"
+        [ngStyle]="{'background-color': room.color}" cdkDrag>
+            <app-color-picker [(roomColor)]="room.color"
+                (change)="changeRoomColor(room)"></app-color-picker>
+            <div class="info-display" (click)="onRoomClick(room)">
                 <h2>{{ room.name }}</h2>
                 <p>{{ room.status | status }}</p>
             </div>
         </div>
+        -->
     </div>
 </div>
 <form #roomForm #addRoomForm="ngForm" class="show-new-card" [ngClass]="{'showing':showRoomForm}" (ngSubmit)="addRoom()">
@@ -21,10 +26,8 @@
     <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newRoom.name">
     <button class="add-room">✔</button>
 </form>
-<button class="show-add-room" 
-    appOutsideClick (clickOutside)="showRoomForm = false" [countAsInside]="[roomForm]"
-    [ngClass]="{'active':showRoomForm}" 
-    (click)="showAddRoom()">
+<button class="show-add-room" appOutsideClick (clickOutside)="showRoomForm = false" [countAsInside]="[roomForm]"
+    [ngClass]="{'active':showRoomForm}" (click)="showAddRoom()">
     <span class="bar"></span>
     <span class="bar"></span>
 </button>

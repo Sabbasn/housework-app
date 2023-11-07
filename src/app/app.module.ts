@@ -18,7 +18,12 @@ import { AlertComponent } from './components/util/alert/alert.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkMenuModule } from '@angular/cdk/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu'
 import { OutsideClickDirective } from './directives/outside-click.directive';
+import { ColorPickerComponent } from './components/housework/home/color-picker/color-picker.component';
+import { CardComponent } from './components/housework/home/card/card.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,8 @@ import { OutsideClickDirective } from './directives/outside-click.directive';
     NotFoundComponent,
     AlertComponent,
     OutsideClickDirective,
+    ColorPickerComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +50,9 @@ import { OutsideClickDirective } from './directives/outside-click.directive';
     BrowserAnimationsModule,
     DragDropModule,
     CdkMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent]

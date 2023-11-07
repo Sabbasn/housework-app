@@ -1,0 +1,35 @@
+.card {
+    display: grid;
+    position: relative;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+    min-height: 100px;
+    cursor: pointer;
+    background-color: var(--main-color);
+    border-radius: 0.6rem;
+}
+
+.card > .info-display {
+    line-height: 10px;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.card-list.cdk-drop-list-dragging .card:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+app-color-picker {
+    position: absolute;
+    background-color: transparent;
+    box-shadow: none;
+    right: 10px;
+    scale: 1.1;
+}

@@ -7,5 +7,6 @@ export class Room {
         public status: number = 0,
         public chores: [] = [],
         public orderPriority: number = 0,
+        public color: string = "#22a980",
     ) {}
 }
