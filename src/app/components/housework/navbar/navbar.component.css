@@ -27,33 +27,35 @@
 ul {
     display: flex;
     list-style-type: none;
-    font-size: 1.1rem;
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
 
+mat-icon {
+    vertical-align: middle;
+    transform: scale(1.5);
+}
+
 li {
-    padding: 10px;
+    padding: 20px;
     display: inline;
+    word-spacing: 5px;
+    text-align: center;
     float: right;
     transition: 0.1s;
-    border-right: 1px solid white;
-}
-
-li:last-child {
-    border-right: none;
-}
-
-li a:hover {
-    color: var(--main-color)
-}
-
-li a {
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     transition: 0.4s;
+}
+
+li {
+    transition: 200ms all ease-in-out;
+}
+
+li:hover {
+    color: var(--main-color)
 }
 
 .title {
@@ -62,19 +64,6 @@ li a {
     margin: 0;
     padding: 0;
     transition: 0.4s;
-}
-
-.title:hover {
-    transform: scale(1.05);
-}
-
-.title a {
-    text-decoration: none;
-    transition: 0.4s;
-}
-
-.title a:hover {
-    color: var(--main-color)
 }
 
 @media (max-width: 600px) {
@@ -102,13 +91,13 @@ li a {
     }
 
     .toggle-button.active > .bar:nth-child(1) {
-        transform: rotateZ(45deg) translateY(12.5px) translateX(12.5px);
+        transform: rotateZ(0deg) translateY(10px) translateX(0);
     }
     .toggle-button.active > .bar:nth-child(2) {
-        transform: scale(0);
+        transform: scale(1);
     }
     .toggle-button.active > .bar:nth-child(3) {
-        transform: rotateZ(-45deg);
+        transform: rotateZ(0deg) translateY(-10px);
     }
 
     .toggle-button:hover > .bar {
@@ -126,7 +115,7 @@ li a {
     }
 
     ul.active {
-        height: 150px;
+        height: 200px;
     }
 
     ul li {
