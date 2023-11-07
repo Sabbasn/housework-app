@@ -8,9 +8,15 @@
                 <span class="bar"></span>
             </a>
             <ul [ngClass]="{'active': isMenuShowing}">
-                <li><a (click)="home()">Home</a></li>
-                <li><a routerLink="/profile">Profile</a></li>
-                <li><a (click)="logout()">Log out</a></li>
+                <li (click)="home()">
+                    Home <mat-icon >home</mat-icon>
+                </li>
+                <li routerLink="/profile">
+                    Profile <mat-icon >person</mat-icon>
+                </li>
+                <li (click)="logout()">
+                    Logout <mat-icon >logout</mat-icon>
+                </li>
             </ul>
         </nav>
     </div>

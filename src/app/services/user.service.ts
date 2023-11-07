@@ -41,7 +41,8 @@ export class UserService {
     const body = {
       'name' : room.name,
       'status' : room.status,
-      'orderPriority' : room.orderPriority
+      'orderPriority' : room.orderPriority,
+      'color' : room.color,
     }
     return this.httpClient.put<Room>(this.apiUrl.concat(`Rooms/${room.id}`), body, {headers})
   }

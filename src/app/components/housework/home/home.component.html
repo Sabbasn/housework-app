@@ -6,25 +6,17 @@
         Create a room by pressing the green button in the bottom right corner.
     </p>
     <div class="card-list" cdkDropList (cdkDropListDropped)="drop($event)">
-        <div #card class="card" *ngFor="let room of rooms" (click)="onRoomClick(room)"
-            [ngStyle]="{'background-color': roomStatusColor(room.status)}" cdkDrag>
-            <div class="info-display">
-                <h2>{{ room.name }}</h2>
-                <p>{{ room.status | status }}</p>
-            </div>
-        </div>
+        <app-card *ngFor="let room of rooms" [room]="room"></app-card>
     </div>
 </div>
 <form #roomForm #addRoomForm="ngForm" class="show-new-card" [ngClass]="{'showing':showRoomForm}" (ngSubmit)="addRoom()">
     <h2>Add Room</h2>
     <label for="name">Name</label>
-    <input placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newRoom.name">
+    <input id="name" placeholder="Name" name="name" autocomplete="off" [(ngModel)]="newRoom.name">
     <button class="add-room">✔</button>
 </form>
-<button class="show-add-room" 
-    appOutsideClick (clickOutside)="showRoomForm = false" [countAsInside]="[roomForm]"
-    [ngClass]="{'active':showRoomForm}" 
-    (click)="showAddRoom()">
+<button class="show-add-room" appOutsideClick (clickOutside)="showRoomForm = false" [countAsInside]="[roomForm]"
+    [ngClass]="{'active':showRoomForm}" (click)="showAddRoom()">
     <span class="bar"></span>
     <span class="bar"></span>
 </button>

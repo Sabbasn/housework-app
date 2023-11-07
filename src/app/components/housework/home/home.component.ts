@@ -4,7 +4,6 @@ import { Room } from 'src/models/housework/room.model';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/models/util/alert.model';
-import { Status } from 'src/models/housework/status.enum';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
 
@@ -23,17 +22,8 @@ export class HomeComponent implements OnInit {
   newRoom : Room = new Room()
   showRoomForm = false;
 
-  roomStatusColor(status: Status) {
-    switch (status) {
-      case Status.Active:
-        return '#036ffc'
-      case Status.Finished:
-        return 'var(--main-color)'
-      case Status.Locked:
-        return 'var(--locked-color)'
-      case Status.Preparing:
-        return '#e3801e'
-    }
+  ngOnInit(): void {
+    this.updateRooms()
   }
 
   drop(event: CdkDragDrop<Room[]>) {
@@ -48,10 +38,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.updateRooms()
-  }
-
   updateRooms() {
     this._userService.getRooms().subscribe({
       next: (res) => {
@@ -62,10 +48,6 @@ export class HomeComponent implements OnInit {
       },
       error: (err) => this._alert.alert(err["error"]["message"], AlertStatus.Error)
     })
-  }
-
-  onRoomClick(room: Room) {
-    this._router.navigateByUrl(`/room/${room.name}`, { state: room })
   }
 
   showAddRoom() {

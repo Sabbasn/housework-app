@@ -1,0 +1,21 @@
+.color-picker {
+    display: flex;
+    position: relative;
+    transition: all 200ms ease-in-out;
+}
+
+.color-picker:hover {
+    scale: 1.2;
+}
+
+.color-picker label {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.color-picker input {
+    visibility: hidden;
+}

@@ -1,0 +1,7 @@
+<div class="card" [ngStyle]="{'background-color': room.color}" cdkDrag>
+    <app-color-picker [room]="room" [(roomColor)]="room.color" (change)="changeRoomColor(room)"></app-color-picker>
+    <div class="info-display" (click)="onRoomClick(room)">
+        <h2>{{ room.name }}</h2>
+        <p>{{ room.status | status }}</p>
+    </div>
+</div>

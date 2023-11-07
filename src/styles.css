@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --bg-color: rgb(20, 20, 20);
-    --main-color: rgb(34, 169, 128);
-    --secondary-color: rgb(77, 54, 180);
+    --bg-color: #141414;
+    --main-color: #22a980;
+    --secondary-color: #4d36b4;
     --locked-color: #e34240;
 }
 
@@ -21,3 +21,7 @@ body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-spinner circle {
+    stroke: white !important;
+}
