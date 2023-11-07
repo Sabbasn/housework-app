@@ -1,10 +1,13 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <h2 class="title">Rooms</h2>
-    <p class="info-text" *ngIf="rooms.length == 0">
-        It seems you have no rooms to work with - no worries! <br>
-        Create a room by pressing the green button in the bottom right corner.
-    </p>
+    <div *ngIf="!isLoading">
+        <h2 class="title">Rooms</h2>
+        <p class="info-text" *ngIf="rooms.length == 0">
+            It seems you have no rooms to work with - no worries! <br>
+            Create a room by pressing the green button in the bottom right corner.
+        </p>
+    </div>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
     <div class="card-list" cdkDropList (cdkDropListDropped)="drop($event)">
         <app-card *ngFor="let room of rooms" [room]="room"></app-card>
     </div>
@@ -16,7 +19,7 @@
     <button class="add-room">✔</button>
 </form>
 <button class="show-add-room" appOutsideClick (clickOutside)="showRoomForm = false" [countAsInside]="[roomForm]"
-    [ngClass]="{'active':showRoomForm}" (click)="showAddRoom()">
+    [ngClass]="{'active':showRoomForm}" (click)="showAddRoom()" *ngIf="!isLoading">
     <span class="bar"></span>
     <span class="bar"></span>
 </button>

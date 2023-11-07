@@ -1,0 +1,8 @@
+<div class="image-uploader">
+    <label [htmlFor]="'img'+room.id">
+        <mat-icon>image</mat-icon>
+    </label>
+    <input [id]="'img'+room.id" type="file" accept="image/png, image/jpeg" [(ngModel)]="room.image"
+        [value]="room.image"
+        (change)="uploadFile($event)">
+</div>

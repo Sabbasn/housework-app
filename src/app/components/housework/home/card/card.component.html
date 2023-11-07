@@ -1,7 +1,14 @@
 <div class="card" [ngStyle]="{'background-color': room.color}" cdkDrag>
-    <app-color-picker [room]="room" [(roomColor)]="room.color" (change)="changeRoomColor(room)"></app-color-picker>
-    <div class="info-display" (click)="onRoomClick(room)">
-        <h2>{{ room.name }}</h2>
-        <p>{{ room.status | status }}</p>
+    <img *ngIf="room.image" class="room-image" [src]="room.image">
+    <div class="display">
+        <div class="room-info" (click)="onRoomClick(room)">
+            <h2>{{ room.name }}</h2>
+            <p>{{ room.status | status }}</p>
+        </div>
+        <div class="tools">
+            <app-color-picker [room]="room" [(roomColor)]="room.color"
+                (change)="changeRoomColor(room)"></app-color-picker>
+            <app-image-uploader [room]="room" [(url)]="room.image"></app-image-uploader>
+        </div>
     </div>
 </div>
