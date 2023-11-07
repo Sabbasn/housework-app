@@ -43,6 +43,7 @@ export class UserService {
       'status' : room.status,
       'orderPriority' : room.orderPriority,
       'color' : room.color,
+      'image' : room.image,
     }
     return this.httpClient.put<Room>(this.apiUrl.concat(`Rooms/${room.id}`), body, {headers})
   }

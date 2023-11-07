@@ -8,5 +8,6 @@ export class Room {
         public chores: [] = [],
         public orderPriority: number = 0,
         public color: string = "#22a980",
+        public image: string | ArrayBuffer | null = null
     ) {}
 }

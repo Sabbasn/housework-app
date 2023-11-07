@@ -1,23 +1,22 @@
-.color-picker {
-    display: flex;
+.image-uploader {
     position: relative;
     transition: all 200ms ease-in-out;
     width: 32px;
 }
 
-.color-picker:hover {
+.image-uploader:hover {
     scale: 1.2;
 }
 
-.color-picker label {
-    cursor: pointer;
+.image-uploader label {
     position: absolute;
-    left: 0;
+    cursor: pointer;
     right: 0;
+    left: 0;
     margin: 0 auto;
 }
 
-.color-picker input {
+.image-uploader input {
+    width: 23px;
     visibility: hidden;
-    width: 28px;
 }

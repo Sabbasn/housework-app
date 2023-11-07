@@ -14,6 +14,8 @@ import { AlertStatus } from 'src/models/util/alertStatus.enum';
 })
 export class HomeComponent implements OnInit {
 
+  isLoading : boolean = false
+
   _userService: UserService = inject(UserService)
   _router: Router = inject(Router)
   _alert: AlertService = inject(AlertService)
@@ -39,6 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   updateRooms() {
+    this.isLoading = true
     this._userService.getRooms().subscribe({
       next: (res) => {
         this.rooms = res.sort((a, b) => {
@@ -46,7 +49,8 @@ export class HomeComponent implements OnInit {
         })
         this.newRoom = new Room()
       },
-      error: (err) => this._alert.alert(err["error"]["message"], AlertStatus.Error)
+      error: (err) => this._alert.alert(err["error"]["message"], AlertStatus.Error),
+      complete: () => this.isLoading = false
     })
   }
 

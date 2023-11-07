@@ -24,7 +24,8 @@ import { MatMenuModule } from '@angular/material/menu'
 import { OutsideClickDirective } from './directives/outside-click.directive';
 import { ColorPickerComponent } from './components/housework/home/color-picker/color-picker.component';
 import { CardComponent } from './components/housework/home/card/card.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ImageUploaderComponent } from './components/housework/home/image-uploader/image-uploader.component'
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     OutsideClickDirective,
     ColorPickerComponent,
     CardComponent,
+    ImageUploaderComponent,
   ],
   imports: [
     BrowserModule,
