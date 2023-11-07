@@ -66,6 +66,14 @@ li:hover {
     transition: 0.4s;
 }
 
+.title a {
+    transition: all 200ms ease-in-out;
+}
+
+.title:hover a {
+    color: var(--main-color);
+}
+
 @media (max-width: 600px) {
     .container {
         display: block;
