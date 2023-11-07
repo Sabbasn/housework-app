@@ -7,7 +7,7 @@
         <br>
         <button [disabled]="!loginForm.form.valid || isLoggingIn" type="submit">
             <div *ngIf="!isLoggingIn">Log In</div>
-            <mat-spinner diameter="30" color="#ffffff" mode="indeterminate"></mat-spinner>
+            <mat-spinner *ngIf="isLoggingIn" diameter="30" color="#ffffff" mode="indeterminate"></mat-spinner>
         </button>
         <p>Don't have an account? <a routerLink="/register">Create one</a>!</p>
     </form>
