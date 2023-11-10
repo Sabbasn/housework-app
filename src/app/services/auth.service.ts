@@ -13,7 +13,7 @@ export class AuthService {
 
     constructor(private httpClient: HttpClient) { }
 
-    apiUrl: string = isDevMode() ? "https://localhost:7076/api/":"https://houseworkappapi.azurewebsites.net/api/";
+    apiUrl: string = isDevMode() ? "https://localhost:7076/api/":"https://houseworkapi.azurewebsites.net/api/";
 
     login(user: UserLogin): Observable<any> {
         const body = { 'email': user.email, 'password': user.password }

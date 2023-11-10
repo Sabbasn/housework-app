@@ -13,7 +13,7 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  apiUrl: string = isDevMode() ? "https://localhost:7076/api/":"https://houseworkappapi.azurewebsites.net/api/";
+  apiUrl: string = isDevMode() ? "https://localhost:7076/api/":"https://houseworkapi.azurewebsites.net/api/";
   token = localStorage.getItem("token")
   headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
 
