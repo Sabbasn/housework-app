@@ -39,10 +39,7 @@ export class LoginComponent implements OnInit {
     this._auth.login(this.user).subscribe({
       next: (res) => this.onSuccess(res),
       error: (err) => { 
-        this.errorText = err["error"]["message"]
-        if (this.errorText.length == 0) {
-          this.errorText = 'Login failed. Please try again.'
-        }
+        this.errorText = err["error"]["message"] ?? 'Login failed. Please try again.'
         this._alert.alert(this.errorText, AlertStatus.Error)
         this.isLoggingIn = false
       },

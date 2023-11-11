@@ -49,7 +49,10 @@ export class HomeComponent implements OnInit {
         })
         this.newRoom = new Room()
       },
-      error: (err) => this._alert.alert(err["error"]["message"], AlertStatus.Error),
+      error: (err) => {
+        this._alert.alert(err["error"]["message"], AlertStatus.Error)
+        this.isLoading = false
+      },
       complete: () => this.isLoading = false
     })
   }
