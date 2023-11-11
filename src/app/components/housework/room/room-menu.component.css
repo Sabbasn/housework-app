@@ -46,3 +46,8 @@
     font-size: 1.6rem;
     font-weight: bold;
 }
+
+.back-btn mat-icon {
+    scale: 1.2;
+    vertical-align: middle;
+}

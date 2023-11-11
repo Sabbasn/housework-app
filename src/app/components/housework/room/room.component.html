@@ -1,7 +1,9 @@
 <app-navbar></app-navbar>
 <div class="container">
     <div class="container-top">
-        <button class="back-btn" routerLink="/">Back</button>
+        <button class="back-btn" routerLink="/">
+            <mat-icon>arrow_backward</mat-icon>
+        </button>
         <a #hamburgerMenu class="hamburger-menu" [cdkMenuTriggerFor]="roomOptions">
             <span class="dot"></span>
             <span class="dot"></span>
