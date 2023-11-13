@@ -26,7 +26,7 @@
         </p>
         <div class="chore-preview-list" *ngIf="currentRoom.status != 0" cdkDropList
             (cdkDropListDropped)="choreDrop($event)">
-            <div cdkDrag class="chore preview" *ngFor="let chore of chores; index as i">
+            <div cdkDrag [cdkDragStartDelay]="dragStartDelay()" class="chore preview" *ngFor="let chore of chores; index as i">
                 <p class="chore-priority">#{{ i + 1 }}</p>
                 <input #choreName class="chore-name" [value]="chore.name"
                     (blur)="renameChore(chore, choreName.value, choreDesc.value)">

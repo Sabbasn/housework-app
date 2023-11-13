@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit {
     this.updateRooms()
   }
 
+
+
   drop(event: CdkDragDrop<Room[]>) {
     moveItemInArray(this.rooms, event.previousIndex, event.currentIndex)
 

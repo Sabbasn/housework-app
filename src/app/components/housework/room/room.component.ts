@@ -33,6 +33,14 @@ export class RoomComponent implements OnInit {
     this.updateChores()
   }
 
+  dragStartDelay() {
+    if (navigator.maxTouchPoints > 0) {
+      return 1000
+    } else {
+      return 0
+    }
+  }
+
   updateChores() {
     this.chores = []
     this._userService.getChores(this.currentRoom.name).subscribe({

@@ -21,4 +21,12 @@ export class CardComponent {
   onRoomClick(room: Room) {
     this._router.navigateByUrl(`/room/${room.name}`, { state: room })
   }
+
+  dragStartDelay() {
+    if (navigator.maxTouchPoints > 0) {
+      return 1000
+    } else {
+      return 0
+    }
+  }
 }
