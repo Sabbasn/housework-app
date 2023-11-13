@@ -26,16 +26,17 @@ export class ImageUploaderComponent {
     }
     if (target.files[0].size >= this.FILE_MAX_SIZE) {
       this._alertService.alert(
-        `File size is too large, file can not be larger than ${this.FILE_MAX_SIZE / 1000}KB`,
+        `File size is too large: file can not be larger than ${this.FILE_MAX_SIZE / 1000}KB`,
         AlertStatus.Error)
       return
     }
     this._fileReader.readAsDataURL(target.files[0])
     this._fileReader.onload = () => {
       this.url = this._fileReader.result
-      this.room.image = this.url
       this.urlChange.emit(this.url)
-      this._userService.updateRoom(this.room).subscribe()
+      this._userService.updateRoom(this.room).subscribe({
+        error: () => this._alertService.alert("Failed to upload image to database", AlertStatus.Error)
+      })
     }
   }
 }
