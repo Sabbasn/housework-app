@@ -1,8 +1,8 @@
 <div class="color-picker">
-    <label [htmlFor]="room.id">
+    <label [htmlFor]="'color-picker-' + room.id">
         <mat-icon class="icon" [ngStyle]="{'color': 'white'}">colorize</mat-icon>
     </label>
-    <input [id]="room.id" [(ngModel)]="roomColor" type="color" [value]="roomColor"
+    <input [id]="'color-picker-' + room.id" [(ngModel)]="roomColor" type="color" [value]="roomColor"
     (ngModelChange)="updateColor()">
 </div>
 
