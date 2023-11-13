@@ -35,7 +35,7 @@ export class RoomComponent implements OnInit {
 
   dragStartDelay() {
     if (navigator.maxTouchPoints > 0) {
-      return 1000
+      return 600
     } else {
       return 0
     }

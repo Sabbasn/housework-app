@@ -10,6 +10,10 @@
     border-radius: 0.6rem;
 }
 
+.card.cdk-drag-preview {
+    scale: 1.1;
+}
+
 .card img {
     object-fit: fill;
     max-width: 300px;

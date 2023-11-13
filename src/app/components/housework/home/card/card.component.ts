@@ -24,7 +24,7 @@ export class CardComponent {
 
   dragStartDelay() {
     if (navigator.maxTouchPoints > 0) {
-      return 1000
+      return 200
     } else {
       return 0
     }
