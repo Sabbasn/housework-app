@@ -6,7 +6,6 @@ COPY . .
 
 RUN npm install
 RUN npm install -g @angular/cli
-RUN npm install -g @angular/cdk
 RUN npm run build
 
 FROM nginx:alpine
