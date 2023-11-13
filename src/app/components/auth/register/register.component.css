@@ -22,6 +22,10 @@
     width: auto;
 }
 
+a {
+    color: hotpink
+}
+
 @media (max-width:400px) {
     .center {
         padding: 10px;
