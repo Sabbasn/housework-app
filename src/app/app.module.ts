@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/housework/home/home.component';
 import { ProfileComponent } from './components/housework/profile/profile.component';
 import { StatusPipe } from './pipes/status.pipe';
@@ -26,6 +26,9 @@ import { ColorPickerComponent } from './components/housework/home/color-picker/c
 import { CardComponent } from './components/housework/home/card/card.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ImageUploaderComponent } from './components/housework/home/image-uploader/image-uploader.component'
+import { MatStepperModule } from '@angular/material/stepper'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
 
 @NgModule({
   declarations: [
@@ -57,6 +60,10 @@ import { ImageUploaderComponent } from './components/housework/home/image-upload
     MatIconModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent]

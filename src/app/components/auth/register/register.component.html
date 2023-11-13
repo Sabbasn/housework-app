@@ -1,21 +1,70 @@
 <div class="center">
     <h1>HouseworkApp</h1>
     <h2>Register</h2>
-    <form #registerForm="ngForm" *ngIf="processPart == 0" (ngSubmit)="onSubmit()">
-        <input placeholder="First Name" type="text" required [(ngModel)]="user.firstName" name="firstName">
-        <input placeholder="Last Name" type="text" required [(ngModel)]="user.lastName" name="lastName">
-        <button [disabled]="!registerForm.form.valid" type="submit">Continue</button>
-    </form>
-    <form #registerFormP2="ngForm" *ngIf="processPart == 1" (ngSubmit)="onSubmit()">
-        <input placeholder="Email" type="email" required [(ngModel)]="user.email" name="email">
-        <input placeholder="Phone Number" type="tel" required [(ngModel)]="user.phoneNumber" name="phoneNumber">
-        <button [disabled]="!registerFormP2.form.valid" type="submit">Continue</button>
-    </form>
-    <form #registerFormP3="ngForm" *ngIf="processPart == 2" (ngSubmit)="onSubmit()">
-        <input #password placeholder="Password" type="password" required [(ngModel)]="user.password" name="password">
-        <input #confirmPassword placeholder="Confirm Password" type="password" required name="confirmPassword">
-        <button [disabled]="!registerFormP3.form.valid || !passwordChecker(password.value, confirmPassword.value)" type="submit">Register</button>
-    </form>
-    <a id="back-btn" (click)="onBackClick()">Back</a>
+    <mat-stepper orientation="vertical" linear #stepper>
+        <mat-step [stepControl]="firstFormGroup" label="Fill out your first and last name">
+            <form [formGroup]="firstFormGroup">
+                <mat-error *ngIf="firstFormGroup.controls['firstName'].invalid && firstFormGroup.controls['firstName'].touched">
+                    Please enter your first name.</mat-error>
+                <mat-form-field>
+                    <input matInput placeholder="First name" formControlName="firstName" [(ngModel)]="user.firstName"
+                        required type="text">
+                </mat-form-field>
+                <mat-error *ngIf="firstFormGroup.controls['lastName'].invalid && firstFormGroup.controls['lastName'].touched">
+                    Please enter your last name.</mat-error>
+                <mat-form-field>
+                    <input matInput placeholder="Last name" formControlName="lastName" [(ngModel)]="user.lastName"
+                        required type="text">
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext (click)="this.firstFormGroup.markAllAsTouched()">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" label="Fill out your email and phone number">
+            <form [formGroup]="secondFormGroup">
+                <mat-error *ngIf="secondFormGroup.controls['email'].invalid && secondFormGroup.controls['email'].touched">
+                    Please enter a valid email.
+                </mat-error>
+                <mat-form-field>
+                    <input name="email" matInput placeholder="Email" formControlName="email" [(ngModel)]="user.email"
+                        type="email" required>
+                </mat-form-field>
+                <mat-error *ngIf="secondFormGroup.controls['phoneNumber'].invalid && secondFormGroup.controls['phoneNumber'].touched">
+                    Please enter your phone number.
+                </mat-error>
+                <mat-form-field>
+                    <input matInput placeholder="Phone number" formControlName="phoneNumber"
+                        [(ngModel)]="user.phoneNumber" type="tel" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup" label="Enter a password for your account">
+            <form [formGroup]="thirdFormGroup">
+                <mat-error *ngIf="this.thirdFormGroup.controls['password'].invalid && this.thirdFormGroup.controls['password'].touched">
+                    Enter a password.
+                </mat-error>
+                <mat-form-field>
+                    <input matInput placeholder="Password" formControlName="password" [(ngModel)]="user.password"
+                        type="password">
+                </mat-form-field>
+                <mat-error *ngIf="this.thirdFormGroup.controls['confirmPassword'].invalid && this.thirdFormGroup.controls['confirmPassword'].touched">
+                    Passwords must match.
+                </mat-error>
+                <mat-form-field>
+                    <input matInput placeholder="Confirm password" formControlName="confirmPassword"
+                        type="password">
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="onSubmit(); this.thirdFormGroup.markAllAsTouched()">Submit</button>
+                </div>
+            </form>
+        </mat-step>
+    </mat-stepper>
     <p>Already have an account? <a routerLink="/login">Log In</a>!</p>
 </div>
