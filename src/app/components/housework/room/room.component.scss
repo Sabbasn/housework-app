@@ -37,7 +37,7 @@
     flex-direction: column;
 }
 
-@for $i from 1 through 100 {
+@for $i from 1 through 6 {
     app-chore-card.active:nth-last-child(#{$i}) {
         transform: rotateZ(0.7deg * $i);
     }

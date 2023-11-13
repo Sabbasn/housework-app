@@ -2,7 +2,6 @@ import { Component, Injectable, OnInit, inject } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserLogin } from 'src/models/auth/userLogin.model';
 import { Router } from '@angular/router';
-import { Alert } from 'src/models/util/alert.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
 

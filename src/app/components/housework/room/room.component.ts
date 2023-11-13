@@ -9,7 +9,6 @@ import { AlertService } from 'src/app/services/alert.service';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
 import { Room } from 'src/models/housework/room.model';
 import { AudioService } from 'src/app/services/audio.service';
-import { AudioCue } from 'src/models/housework/audioCue';
 
 @Component({
   selector: 'app-room',
