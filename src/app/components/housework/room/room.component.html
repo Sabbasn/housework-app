@@ -26,24 +26,15 @@
         </p>
         <div class="chore-preview-list" *ngIf="currentRoom.status != 0" cdkDropList
             (cdkDropListDropped)="choreDrop($event)">
-            <div cdkDrag [cdkDragStartDelay]="dragStartDelay()" class="chore preview" *ngFor="let chore of chores; index as i">
-                <p class="chore-priority">#{{ i + 1 }}</p>
-                <input #choreName class="chore-name" [value]="chore.name"
-                    (blur)="renameChore(chore, choreName.value, choreDesc.value)">
-                <textarea #choreDesc autosize class="chore-desc" placeholder="Description text"
-                    (blur)="renameChore(chore, choreName.value, choreDesc.value)">{{chore.description}}</textarea>
-                <a class="remove-btn" (click)="removeChore(chore)">
-                    <mat-icon style="vertical-align: middle;">delete</mat-icon>
-                </a>
-            </div>
+            <app-chore-card cdkDrag [cdkDragStartDelay]="dragStartDelay()" *ngFor="let chore of chores; index as i"
+                [chore]="chore" [chorePriority]="i+1" [roomStatus]="currentRoom.status"
+                (removeChoreEvent)="updateChores()">
+            </app-chore-card>
         </div>
-        <div *ngIf="currentRoom.status == 0">
-            <div #choreElem class="chore active" *ngFor="let chore of chores">
-                <h2>{{ chore.name }}</h2>
-                <p>{{ chore.description }}</p>
-                <p class="experience-txt">Experience: {{ chore.experienceReward }}</p>
-                <button *ngIf="currentRoom.status == 0" class="done-btn" (click)="onDoneClick(chore)">✔</button>
-            </div>
+        <div *ngIf="currentRoom.status == 0" class="chore-active-list">
+            <app-chore-card *ngFor="let chore of chores" [chore]="chore" [chores]="chores" class="active"
+                [roomStatus]="currentRoom.status" (removeChoreEvent)="updateChores()">
+            </app-chore-card>
         </div>
     </div>
     <button *ngIf="currentRoom.status == 3" class="add-room-btn" (click)="addChore()">

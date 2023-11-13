@@ -30,6 +30,7 @@ import { MatStepperModule } from '@angular/material/stepper'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ChoreCardComponent } from './components/housework/room/chore-card/chore-card.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     ColorPickerComponent,
     CardComponent,
     ImageUploaderComponent,
+    ChoreCardComponent,
   ],
   imports: [
     BrowserModule,

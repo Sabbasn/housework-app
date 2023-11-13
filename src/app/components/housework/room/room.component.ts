@@ -14,7 +14,7 @@ import { AudioCue } from 'src/models/housework/audioCue';
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.css', './add-chore.component.css', './room-menu.component.css']
+  styleUrls: ['./room.component.scss', './add-chore.component.css', './room-menu.component.css']
 })
 export class RoomComponent implements OnInit {
   currentRoom : Room = new Room()
@@ -82,24 +82,6 @@ export class RoomComponent implements OnInit {
     })
   }
 
-  onDoneClick(chore: Chore) {
-    var indexToRemove = this.chores.indexOf(chore)
-    this.chores.splice(indexToRemove, 1)
-    chore.status = Status.Finished
-    this._userService.updateChore(chore).subscribe({
-      error: () => this._alert.alert("Couldn't complete chore, please try again..", AlertStatus.Warning),
-      complete: () => {
-        this._alert.alert(`You received ${chore.experienceReward} experience!`, AlertStatus.Success)
-        this._audio.playAudio(AudioCue.CHORE_FINISH)
-        this.updateChores()
-      }
-    })
-    if (this.chores.length == 0) {
-      this.currentRoom.status = Status.Finished
-      this._userService.updateRoom(this.currentRoom).subscribe()
-    }
-  }
-
   addChore() {
     var choreName = `Chore ${this.chores.length + 1}`
     var choreDesc = ''
@@ -115,24 +97,6 @@ export class RoomComponent implements OnInit {
         console.log("Successfully added chore!")
         this.updateChores()
       }
-    })
-  }
-
-  removeChore(chore: Chore) {
-    this._userService.removeChore(chore.id).subscribe({
-      error: () => this._alert.alert("Couldn't delete chore. Please try again.", AlertStatus.Error),
-      complete: () => this.updateChores()
-    })
-  }
-
-  renameChore(chore: Chore, name: string, desc: string) {
-    if(chore.name == name && chore.description == desc) {
-      return
-    }
-    chore.name = name
-    chore.description = desc
-    this._userService.updateChore(chore).subscribe({
-      error: () => this._alert.alert("An error occured renaming your chore.", AlertStatus.Error),
     })
   }
 
