@@ -32,7 +32,9 @@
                     (blur)="renameChore(chore, choreName.value, choreDesc.value)">
                 <textarea #choreDesc autosize class="chore-desc" placeholder="Description text"
                     (blur)="renameChore(chore, choreName.value, choreDesc.value)">{{chore.description}}</textarea>
-                <a class="remove-btn" (click)="removeChore(chore)">X</a>
+                <a class="remove-btn" (click)="removeChore(chore)">
+                    <mat-icon style="vertical-align: middle;">delete</mat-icon>
+                </a>
             </div>
         </div>
         <div *ngIf="currentRoom.status == 0">

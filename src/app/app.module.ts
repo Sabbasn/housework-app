@@ -29,6 +29,7 @@ import { ImageUploaderComponent } from './components/housework/home/image-upload
 import { MatStepperModule } from '@angular/material/stepper'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { MatInputModule } from '@angular/material/input'
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatDatepickerModule,
   ],
   providers: [AppComponent],
   bootstrap: [AppComponent]
