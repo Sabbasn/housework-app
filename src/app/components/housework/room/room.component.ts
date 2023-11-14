@@ -9,6 +9,8 @@ import { AlertService } from 'src/app/services/alert.service';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
 import { Room } from 'src/models/housework/room.model';
 import { AudioService } from 'src/app/services/audio.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
 
 @Component({
   selector: 'app-room',
@@ -26,6 +28,7 @@ export class RoomComponent implements OnInit {
   _router: Router = inject(Router)
   _alert: AlertService = inject(AlertService)
   _audio: AudioService = inject(AudioService)
+  _dialog: MatDialog = inject(MatDialog)
   
   ngOnInit(): void {
     this.currentRoom = history.state
@@ -127,6 +130,16 @@ export class RoomComponent implements OnInit {
     this._userService.deleteRoom(this.currentRoom.id).subscribe({
       error: () => this._alert.alert("An error occured trying to delete room. Please try again.", AlertStatus.Error),
       complete: () => this._router.navigateByUrl("/")
+    })
+  }
+
+  confirmDeleteDialog() {
+    const dialogRef = this._dialog.open(ConfirmDeleteDialogComponent)
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteRoom()
+      }
     })
   }
 }

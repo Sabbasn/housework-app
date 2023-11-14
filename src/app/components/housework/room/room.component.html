@@ -11,7 +11,7 @@
         </a>
         <ng-template #roomOptions>
             <div class="menu-options" cdkMenu>
-                <button cdkMenuItem (click)="deleteRoom()">Delete</button>
+                <button cdkMenuItem (click)="confirmDeleteDialog()">Delete</button>
             </div>
         </ng-template>
         <input #title id="title" [value]="currentRoom.name" (blur)="renameRoom(title)">

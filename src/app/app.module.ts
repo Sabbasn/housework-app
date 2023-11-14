@@ -33,6 +33,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ChoreCardComponent } from './components/housework/room/chore-card/chore-card.component';
 import { WeekdaySelectorComponent } from "./components/housework/room/weekday-selector/weekday-selector.component";
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -73,7 +74,8 @@ import { WeekdaySelectorComponent } from "./components/housework/room/weekday-se
         MatInputModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        WeekdaySelectorComponent
+        WeekdaySelectorComponent,
+        MatDialogModule,
     ]
 })
 export class AppModule { }
