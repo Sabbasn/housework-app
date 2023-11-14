@@ -73,6 +73,7 @@ textarea.chore-desc {
 }
 
 .chore.active {
+    height: 350px;
     position: absolute;
     padding: 10px;
     transition: all 250ms ease-in-out;
@@ -102,11 +103,16 @@ textarea.chore-desc {
 
 .done-btn {
     cursor: pointer;
+    position: absolute;
     box-sizing: border-box;
     background-color: rgb(40, 40, 40);
     border: 1px solid white;
     transition: all 250ms ease-in-out;
     text-align: center;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: 5px;
     width: 50px;
     height: 50px;
     border-radius: 50%;

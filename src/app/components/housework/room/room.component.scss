@@ -44,6 +44,10 @@
     }
 }
 
+app-chore-card.active:last-child {
+    transform: rotateZ(0deg);
+}
+
 .cdk-drag-preview {
     opacity: 1;
 }
