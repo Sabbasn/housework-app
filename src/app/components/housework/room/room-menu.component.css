@@ -29,10 +29,12 @@
 }
 
 .menu-options > button {
-    height: 100%;
     width: 100%;
+    height: 100%;
     padding: 15px;
     background-color: rgb(40, 40, 40);
+    z-index: 1;
+    border-radius: 0.6rem;
 }
 
 .menu-options > button:disabled {
