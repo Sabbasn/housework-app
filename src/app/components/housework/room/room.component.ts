@@ -74,7 +74,7 @@ export class RoomComponent implements OnInit {
 
   executeChores() {
     if (this.chores.length == 0) {
-      this._alert.alert("You must add atleast one chore in order to start!", AlertStatus.Warning)
+      this._alert.alert("You must add at least one chore in order to start!", AlertStatus.Warning)
       return
     }
     this.currentRoom.status = Status.Active
