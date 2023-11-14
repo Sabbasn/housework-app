@@ -1,12 +1,19 @@
 .container {
     display: flex;
     justify-content: center;
-    flex-direction: column;
     margin: 0 auto;
     text-wrap: wrap;
     word-wrap: break-word;
-    min-height: 100px;
+    min-height: 50px;
     height: auto;
+}
+
+mat-button-toggle-group {
+    padding: 10px;
+}
+
+button mat-icon {
+    scale: 1.5;
 }
 
 mat-button-toggle-group {
@@ -20,6 +27,7 @@ mat-button-toggle-group {
 }
 
 mat-button-toggle {
+    box-shadow: none;
     flex-grow: 1;
     border-radius: 0.3rem;
 }

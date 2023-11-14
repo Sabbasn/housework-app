@@ -4,6 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleGroup, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { Chore } from 'src/models/housework/chore.model';
 import { WeekdaysPipe } from "../../../../pipes/weekdays.pipe";
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-weekday-selector',
@@ -14,7 +17,10 @@ import { WeekdaysPipe } from "../../../../pipes/weekdays.pipe";
         CommonModule,
         MatButtonModule,
         MatButtonToggleModule,
-        WeekdaysPipe
+        WeekdaysPipe,
+        MatMenuModule,
+        MatIconModule,
+        MatTooltipModule,
     ]
 })
 export class WeekdaySelectorComponent implements AfterViewInit {

@@ -45,7 +45,7 @@ export class RoomComponent implements OnInit {
     this._userService.getChores(this.currentRoom.name).subscribe({
       next: (res) => {
         res.forEach(chore => {
-          if(chore.status === Status.Active || chore.status === Status.Locked) {
+          if(chore.status !== Status.Finished) {
             this.chores.push(chore)
           }
         })

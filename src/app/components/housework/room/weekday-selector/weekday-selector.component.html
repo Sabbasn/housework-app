@@ -1,11 +1,16 @@
 <div class="container">
-    <mat-button-toggle-group #group="matButtonToggleGroup" multiple (change)="updateChore()">
-        <mat-button-toggle color="secondary" value="Monday">Mon</mat-button-toggle>
-        <mat-button-toggle color="secondary" value="Tuesday">Tue</mat-button-toggle>
-        <mat-button-toggle color="secondary" value="Wednesday">Wed</mat-button-toggle>
-        <mat-button-toggle color="secondary" value="Thursday">Thu</mat-button-toggle>
-        <mat-button-toggle color="secondary" value="Friday">Fri</mat-button-toggle>
-        <mat-button-toggle color="secondary" value="Saturday">Sat</mat-button-toggle>
-        <mat-button-toggle color="secondary" value="Sunday">Sun</mat-button-toggle>
-    </mat-button-toggle-group>
+    <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Repeat chore">
+        <mat-icon>edit_calendar</mat-icon>
+    </button>
 </div>
+<mat-menu #menu="matMenu">
+    <mat-button-toggle-group #group="matButtonToggleGroup" multiple (change)="updateChore()" (click)="$event.stopPropagation()">
+        <mat-button-toggle value="Monday">Mon</mat-button-toggle>
+        <mat-button-toggle value="Tuesday">Tue</mat-button-toggle>
+        <mat-button-toggle value="Wednesday">Wed</mat-button-toggle>
+        <mat-button-toggle value="Thursday">Thu</mat-button-toggle>
+        <mat-button-toggle value="Friday">Fri</mat-button-toggle>
+        <mat-button-toggle value="Saturday">Sat</mat-button-toggle>
+        <mat-button-toggle value="Sunday">Sun</mat-button-toggle>
+    </mat-button-toggle-group>
+</mat-menu>

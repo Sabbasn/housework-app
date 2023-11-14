@@ -35,8 +35,6 @@
     cursor: pointer;
     position: relative;
     width: 300px;
-    height: auto;
-    min-height: 100px;
     padding: 5px;
 }
 
@@ -86,19 +84,19 @@ textarea.chore-desc {
 }
 
 .remove-btn {
-    color: black;
+    color: white;
     transition: 0.4s;
     align-self: center;
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 8px;
+    top: 13px;
     height: 25px;
     width: 25px;
     background-color: transparent;
 }
 
 .remove-btn:hover {
-    color: white
+    transform: rotateY(360deg);
 }
 
 .done-btn {
@@ -126,3 +124,5 @@ textarea.chore-desc {
 .experience-txt {
     font-size: 1rem !important;
 }
+
+app-weekday-selector {}
