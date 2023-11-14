@@ -5,6 +5,8 @@
     margin: 0 auto;
     text-wrap: wrap;
     word-wrap: break-word;
+    min-height: 100px;
+    height: auto;
 }
 
 mat-button-toggle-group {

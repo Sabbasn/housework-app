@@ -50,8 +50,12 @@ input, textarea {
     outline: none;
     text-align: center;
     resize: none;
-    overflow: hidden;
     box-sizing: border-box;
+}
+
+textarea {
+    overflow: auto;
+    height: 150px;
 }
 
 input.chore-name { 

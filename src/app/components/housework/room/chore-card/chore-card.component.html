@@ -3,7 +3,7 @@
         <p class="chore-priority">#{{ chorePriority }}</p>
         <input #choreName class="chore-name" [value]="chore.name" maxlength="15"
             (blur)="renameChore(chore, choreName.value, choreDesc.value)">
-        <textarea #choreDesc autosize class="chore-desc" placeholder="Description text" maxlength="150"
+        <textarea #choreDesc autosize class="chore-desc" placeholder="Description text" maxlength="120"
             (blur)="renameChore(chore, choreName.value, choreDesc.value)">{{chore.description}}</textarea>
         <a class="remove-btn" (click)="removeChore(chore)">
             <mat-icon style="vertical-align: middle;">delete</mat-icon>
