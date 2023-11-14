@@ -8,6 +8,7 @@
         <a class="remove-btn" (click)="removeChore(chore)">
             <mat-icon style="vertical-align: middle;">delete</mat-icon>
         </a>
+        <app-weekday-selector (choreChange)="updateChore($event, chore)" [chore]="chore"></app-weekday-selector>
     </div>
     <div *ngIf="roomStatus == 0">
         <h1>{{ chore.name }}</h1>

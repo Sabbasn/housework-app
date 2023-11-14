@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    text-wrap: wrap;
+    word-wrap: break-word;
+}
+
+mat-button-toggle-group {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 auto;
+    border: none;
+    gap: 5px;
+    justify-content: center;
+    width: 250px;
+}
+
+mat-button-toggle {
+    flex-grow: 1;
+    border-radius: 0.3rem;
+}

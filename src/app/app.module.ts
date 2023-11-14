@@ -30,46 +30,50 @@ import { MatStepperModule } from '@angular/material/stepper'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { ChoreCardComponent } from './components/housework/room/chore-card/chore-card.component';
+import { WeekdaySelectorComponent } from "./components/housework/room/weekday-selector/weekday-selector.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    ProfileComponent,
-    HomeComponent,
-    StatusPipe,
-    NavbarComponent,
-    CardTiltDirective,
-    RoomComponent,
-    NotFoundComponent,
-    AlertComponent,
-    OutsideClickDirective,
-    ColorPickerComponent,
-    CardComponent,
-    ImageUploaderComponent,
-    ChoreCardComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    DragDropModule,
-    CdkMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatProgressSpinnerModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatDatepickerModule,
-  ],
-  providers: [AppComponent],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        ProfileComponent,
+        HomeComponent,
+        StatusPipe,
+        NavbarComponent,
+        CardTiltDirective,
+        RoomComponent,
+        NotFoundComponent,
+        AlertComponent,
+        OutsideClickDirective,
+        ColorPickerComponent,
+        CardComponent,
+        ImageUploaderComponent,
+        ChoreCardComponent,
+    ],
+    providers: [AppComponent],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        DragDropModule,
+        CdkMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatProgressSpinnerModule,
+        MatStepperModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        WeekdaySelectorComponent
+    ]
 })
 export class AppModule { }

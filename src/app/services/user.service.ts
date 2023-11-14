@@ -65,6 +65,7 @@ export class UserService {
       'orderPriority': chore.orderPriority,
       'name': chore.name,
       'description': chore.description,
+      'repeatWeekdays': chore.repeatWeekdays,
     }
     return this.httpClient.put<Service<Chore>>(this.apiUrl.concat(`Chores/${chore.id}`), body, {headers})
   }

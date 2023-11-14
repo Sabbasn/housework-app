@@ -5,6 +5,7 @@ export class Chore {
         public description: string,
         public status: number,
         public experienceReward: number,
+        public repeatWeekdays: string[],
         public orderPriority: number = 0,
     ) {}
 }

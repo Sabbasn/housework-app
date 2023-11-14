@@ -48,6 +48,13 @@ export class ChoreCardComponent implements OnInit {
     })
   }
 
+  updateChore(weekdays: string[], chore: Chore) {
+    chore.repeatWeekdays = weekdays
+    this._userService.updateChore(chore).subscribe({
+      error: () => this._alert.alert("Could not update chore, please try again.", AlertStatus.Error)
+    })
+  }
+
   renameChore(chore: Chore, name: string, desc: string) {
     if(chore.name == name && chore.description == desc) {
       return
