@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
@@ -11,5 +11,5 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './confirm-delete-dialog.component.css'
 })
 export class ConfirmDeleteDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {delete: boolean}) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {delete: boolean, roomName: string}) { }
 }

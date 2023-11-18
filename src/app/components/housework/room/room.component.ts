@@ -144,7 +144,11 @@ export class RoomComponent implements OnInit {
   }
 
   confirmDeleteDialog() {
-    const dialogRef = this._dialog.open(ConfirmDeleteDialogComponent)
+    const dialogRef = this._dialog.open(ConfirmDeleteDialogComponent, {
+      data: {
+        roomName: this.currentRoom.name
+      }
+    })
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
