@@ -17,30 +17,30 @@
         <input #title id="title" [value]="currentRoom.name" (blur)="renameRoom(title)">
     </div>
     <div class="chores">
-        <p *ngIf="currentRoom.status == 1">
+        <p *ngIf="currentRoom.status == status.Finished">
             You have no chores left here!<br> Press the 'start'-button below to plan your cleaning journey
         </p>
-        <p *ngIf="currentRoom.status == 3 && chores.length == 0">
+        <p *ngIf="currentRoom.status == status.Preparing && chores.length == 0">
             Press the '+'-button on the bottom right of this card to add a chore to your room. <br>
-            When you feel happy about your chores, hit the 'start'-button to begin!
+            Hit the 'start'-button when you are ready to clean.
         </p>
-        <div class="chore-preview-list" *ngIf="currentRoom.status != 0" cdkDropList
+        <div class="chore-preview-list" *ngIf="currentRoom.status == status.Preparing" cdkDropList
             (cdkDropListDropped)="choreDrop($event)">
             <app-chore-card cdkDrag [cdkDragStartDelay]="dragStartDelay()" *ngFor="let chore of chores; index as i"
                 [chore]="chore" [chorePriority]="i+1" [roomStatus]="currentRoom.status"
-                (removeChoreEvent)="updateChores()">
+                (updateChoreEvent)="updateChores()">
             </app-chore-card>
         </div>
-        <div *ngIf="currentRoom.status == 0" class="chore-active-list">
+        <div *ngIf="currentRoom.status == status.Active" class="chore-active-list">
             <app-chore-card *ngFor="let chore of chores" [chore]="chore" [chores]="chores" class="active"
-                [roomStatus]="currentRoom.status" (removeChoreEvent)="updateChores()">
+                [roomStatus]="currentRoom.status" (updateChoreEvent)="updateChores()">
             </app-chore-card>
         </div>
     </div>
-    <button *ngIf="currentRoom.status == 3" class="add-room-btn" (click)="addChore()">
+    <button *ngIf="currentRoom.status == status.Preparing" class="add-room-btn" (click)="addChore()">
         <span class="bar"></span>
         <span class="bar"></span>
     </button>
-    <button *ngIf="currentRoom.status != 3" class="ready-btn" (click)="prepareChores()">Start</button>
-    <button *ngIf="currentRoom.status == 3" class="ready-btn" (click)="executeChores()">Start</button>
+    <button *ngIf="currentRoom.status != status.Preparing" class="ready-btn" (click)="planChores()">Start</button>
+    <button *ngIf="currentRoom.status == status.Preparing" class="ready-btn" (click)="executeChores()">Start</button>
 </div>

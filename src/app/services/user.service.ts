@@ -53,9 +53,9 @@ export class UserService {
     return this.httpClient.delete<Room>(this.apiUrl.concat(`Rooms/${roomId}`), {headers})
   }
 
-  getChores(roomName: string) : Observable<Chore[]> {
+  getChores(roomId: number) : Observable<Chore[]> {
     const headers = this.headers
-    return this.httpClient.get<Chore[]>(this.apiUrl.concat(`Chores/${roomName}`), {headers})
+    return this.httpClient.get<Chore[]>(this.apiUrl.concat(`Chores/${roomId}`), {headers})
   }
 
   updateChore(chore: Chore) : Observable<Service<Chore>> {
@@ -75,13 +75,13 @@ export class UserService {
     return this.httpClient.delete<Chore>(this.apiUrl.concat(`Chores/${id}`), {headers})
   }
 
-  addChore(roomName: string, chore: AddChore) : Observable<Chore> {
+  addChore(roomId: number, chore: AddChore) : Observable<Chore> {
     const headers = this.headers
     const body = {
       'name' : chore.name,
       'description' : chore.description,
       'status' : chore.status,
     }
-    return this.httpClient.post<Chore>(this.apiUrl.concat(`Chores/${roomName}`), body, {headers})
+    return this.httpClient.post<Chore>(this.apiUrl.concat(`Chores/${roomId}`), body, {headers})
   } 
 }

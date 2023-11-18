@@ -20,8 +20,7 @@ import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-de
 export class RoomComponent implements OnInit {
   currentRoom : Room = new Room()
   chores: Chore[] = []
-  showChoreForm: boolean = false
-  hamburgerToggle: boolean = false
+  status: typeof Status = Status
 
   _userService: UserService = inject(UserService)
   _route: ActivatedRoute = inject(ActivatedRoute)
@@ -44,15 +43,17 @@ export class RoomComponent implements OnInit {
   }
 
   updateChores() {
-    this.chores = []
-    this._userService.getChores(this.currentRoom.name).subscribe({
+    this._userService.getChores(this.currentRoom.id).subscribe({
       next: (res) => {
-        res.forEach(chore => {
-          if(chore.status !== Status.Finished) {
-            this.chores.push(chore)
-          }
-        })
-        
+        this.chores = res.filter(c => c.status == Status.Active || c.status == Status.Preparing)
+        if (this.chores.length == 0 && this.currentRoom.status == Status.Active) {
+          this.currentRoom.status = Status.Finished
+          this._userService.updateRoom(this.currentRoom).subscribe({
+            error: () => this._alert.alert('Could not set room state to "finished"', AlertStatus.Error),
+            complete: () => console.log("Finished all chores")
+          })
+          return
+        }
         this.chores.sort((a, b) => {
           return a.orderPriority - b.orderPriority
         })
@@ -62,13 +63,14 @@ export class RoomComponent implements OnInit {
         }
       }
     })
+
   }
 
-  prepareChores() {
+  planChores() {
     this.currentRoom.status = Status.Preparing
     this._userService.updateRoom(this.currentRoom).subscribe({
-      error: () => this._alert.alert('Could not start. Please try again.', AlertStatus.Error),
-      complete: () => console.log("Successfully changed status of room!")
+      error: () => this._alert.alert('Could not initiate chore planning. Please try again.', AlertStatus.Error),
+      complete: () => console.log("Room is in planning mode.")
     })
   }
 
@@ -90,9 +92,9 @@ export class RoomComponent implements OnInit {
     var chore = new AddChore(
       choreName,
       choreDesc,
-      Status.Active
+      Status.Preparing
     )
-    this._userService.addChore(this.currentRoom.name, chore).subscribe({
+    this._userService.addChore(this.currentRoom.id, chore).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.warn(err),
       complete: () => {
@@ -120,10 +122,6 @@ export class RoomComponent implements OnInit {
       c.orderPriority = i
       this._userService.updateChore(c).subscribe()
     }
-  }
-
-  toggleMenu() {
-    this.hamburgerToggle = !this.hamburgerToggle
   }
 
   deleteRoom() {

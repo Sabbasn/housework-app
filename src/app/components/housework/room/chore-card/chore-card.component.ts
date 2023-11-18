@@ -18,7 +18,7 @@ export class ChoreCardComponent implements OnInit {
   @Input() chores!: Chore[]
   @Input() chorePriority!: Number
   @Input() roomStatus!: Number
-  @Output() removeChoreEvent = new EventEmitter<Chore>()
+  @Output() updateChoreEvent = new EventEmitter<Chore>()
 
   _userService: UserService = inject(UserService)
   _alert: AlertService = inject(AlertService)
@@ -27,7 +27,7 @@ export class ChoreCardComponent implements OnInit {
   choreClasses: string[] = []
 
   ngOnInit(): void {
-    if (this.roomStatus == 3) {
+    if (this.roomStatus == Status.Preparing) {
       this.choreClasses.push('preview')
     } else {
       this.choreClasses.push('active')
@@ -35,15 +35,13 @@ export class ChoreCardComponent implements OnInit {
   }
 
   onDoneClick() {
-    var indexToRemove = this.chores.indexOf(this.chore)
-    this.chores.splice(indexToRemove, 1)
     this.chore.status = Status.Finished
     this._userService.updateChore(this.chore).subscribe({
       error: () => this._alert.alert("Couldn't complete chore, please try again..", AlertStatus.Warning),
       complete: () => {
         this._alert.alert(`You received ${this.chore.experienceReward} experience!`, AlertStatus.Success)
         this._audio.playAudio(AudioCue.CHORE_FINISH)
-        this.removeChoreEvent.emit(this.chore)
+        this.updateChoreEvent.emit(this.chore)
       }
     })
   }
@@ -69,7 +67,7 @@ export class ChoreCardComponent implements OnInit {
   removeChore(chore: Chore) {
     this._userService.removeChore(chore.id).subscribe({
       error: () => this._alert.alert("Couldn't delete chore. Please try again.", AlertStatus.Error),
-      complete: () => this.removeChoreEvent.emit(this.chore)
+      complete: () => this.updateChoreEvent.emit(this.chore)
     })
   }
 }
