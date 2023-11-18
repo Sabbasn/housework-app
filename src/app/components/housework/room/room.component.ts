@@ -43,28 +43,14 @@ export class RoomComponent implements OnInit {
     }
   }
 
-  isScheduledToday(chore: Chore): boolean {
-    if (chore.status === Status.Preparing) {
-      return true
-    }
-    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    const todaysDate = new Date(Date.now())
-    var completionDate = new Date(chore.lastCompletionDate)
-    completionDate.setHours(0, 0, 0, 0)
-    todaysDate.setHours(0, 0, 0, 0)
-    const isScheduled = 
-      (chore.repeatWeekdays.includes(weekday[todaysDate.getDay()]) && 
-      completionDate !== todaysDate) || 
-      chore.repeatWeekdays.length == 0
-    return isScheduled
+  isScheduledToday(chore: Chore) : boolean {
+    return (chore.status === Status.Preparing || chore.status === Status.Active)
   }
 
   updateChores() {
     this._userService.getChores(this.currentRoom.id).subscribe({
       next: (res) => {
-        this.chores = res.filter(c =>
-          c.status == Status.Active || c.status == Status.Preparing
-        )
+        this.chores = res.filter(c => this.isScheduledToday(c))
 
         if (this.chores.length == 0 && this.currentRoom.status == Status.Active) {
           this.currentRoom.status = Status.Finished
@@ -123,10 +109,9 @@ export class RoomComponent implements OnInit {
       Status.Preparing
     )
     this._userService.addChore(this.currentRoom.id, chore).subscribe({
-      next: (res) => this.chores.push(res),
       error: (err) => console.warn(err),
       complete: () => {
-        console.log("Successfully added chore!")
+        this.updateChores()
       }
     })
   }
