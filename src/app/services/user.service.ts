@@ -58,6 +58,11 @@ export class UserService {
     return this.httpClient.get<Chore[]>(this.apiUrl.concat(`Chores/${roomId}`), {headers})
   }
 
+  getScheduledChores(roomId: number) : Observable<Chore[]> {
+    const headers = this.headers
+    return this.httpClient.get<Chore[]>(this.apiUrl.concat(`Chores/Scheduled/${roomId}`), {headers})
+  }
+
   updateChore(chore: Chore) : Observable<Service<Chore>> {
     const headers = this.headers
     const body = {
