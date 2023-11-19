@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { User } from 'src/models/auth/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-profile',
@@ -9,8 +10,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileComponent implements OnInit {
   constructor(private _userService: UserService) {}
+  _cookie: CookieService = inject(CookieService)
+
   user = new User()
-  email = localStorage.getItem("email")
+  email = this._cookie.get("email")
 
   ngOnInit(): void {
     this._userService.getUserData(this.email!).subscribe({

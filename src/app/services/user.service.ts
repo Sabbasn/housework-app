@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, isDevMode } from '@angular/core';
+import { Injectable, inject, isDevMode } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { Service } from 'src/models/auth/service.model';
 import { AddChore } from 'src/models/housework/addChore.model';
@@ -11,21 +12,22 @@ import { Room } from 'src/models/housework/room.model';
 })
 export class UserService {
 
-  constructor(private httpClient: HttpClient) { }
+  _httpClient: HttpClient = inject(HttpClient)
+  _cookie: CookieService = inject(CookieService)
 
   apiUrl: string = isDevMode() ? "https://localhost:7076/api/":"https://houseworkapi.azurewebsites.net/api/";
-  token = localStorage.getItem("token")
+  token = this._cookie.get('token')
   headers = { 'Content-Type':'application/json', 'Authorization':`Bearer ${this.token}` }
 
   getUserData(email: string) {
     const headers = this.headers
     localStorage.setItem("email", email)
-    return this.httpClient.get(this.apiUrl.concat(`Users/${email}`), {headers})
+    return this._httpClient.get(this.apiUrl.concat(`Users/${email}`), {headers})
   }
 
   getRooms() : Observable<Room[]> {
     const headers = this.headers
-    return this.httpClient.get<Room[]>(this.apiUrl.concat(`Rooms`), {headers})
+    return this._httpClient.get<Room[]>(this.apiUrl.concat(`Rooms`), {headers})
   }
 
   addRoom(room: Room) : Observable<Room> {
@@ -33,7 +35,7 @@ export class UserService {
     const body = {
       'name' : room.name,
     }
-    return this.httpClient.post<Room>(this.apiUrl.concat(`Rooms`), body, {headers})
+    return this._httpClient.post<Room>(this.apiUrl.concat(`Rooms`), body, {headers})
   }
 
   updateRoom(room: Room) : Observable<Room> {
@@ -45,22 +47,22 @@ export class UserService {
       'color' : room.color,
       'image' : room.image,
     }
-    return this.httpClient.put<Room>(this.apiUrl.concat(`Rooms/${room.id}`), body, {headers})
+    return this._httpClient.put<Room>(this.apiUrl.concat(`Rooms/${room.id}`), body, {headers})
   }
 
   deleteRoom(roomId: number) : Observable<Room> {
     const headers = this.headers
-    return this.httpClient.delete<Room>(this.apiUrl.concat(`Rooms/${roomId}`), {headers})
+    return this._httpClient.delete<Room>(this.apiUrl.concat(`Rooms/${roomId}`), {headers})
   }
 
   getChores(roomId: number) : Observable<Chore[]> {
     const headers = this.headers
-    return this.httpClient.get<Chore[]>(this.apiUrl.concat(`Chores/${roomId}`), {headers})
+    return this._httpClient.get<Chore[]>(this.apiUrl.concat(`Chores/${roomId}`), {headers})
   }
 
   getScheduledChores(roomId: number) : Observable<Chore[]> {
     const headers = this.headers
-    return this.httpClient.get<Chore[]>(this.apiUrl.concat(`Chores/Scheduled/${roomId}`), {headers})
+    return this._httpClient.get<Chore[]>(this.apiUrl.concat(`Chores/Scheduled/${roomId}`), {headers})
   }
 
   updateChore(chore: Chore) : Observable<Service<Chore>> {
@@ -72,12 +74,12 @@ export class UserService {
       'description': chore.description,
       'repeatWeekdays': chore.repeatWeekdays,
     }
-    return this.httpClient.put<Service<Chore>>(this.apiUrl.concat(`Chores/${chore.id}`), body, {headers})
+    return this._httpClient.put<Service<Chore>>(this.apiUrl.concat(`Chores/${chore.id}`), body, {headers})
   }
 
   removeChore(id: number) : Observable<Chore> {
     const headers = this.headers
-    return this.httpClient.delete<Chore>(this.apiUrl.concat(`Chores/${id}`), {headers})
+    return this._httpClient.delete<Chore>(this.apiUrl.concat(`Chores/${id}`), {headers})
   }
 
   addChore(roomId: number, chore: AddChore) : Observable<Chore> {
@@ -87,6 +89,6 @@ export class UserService {
       'description' : chore.description,
       'status' : chore.status,
     }
-    return this.httpClient.post<Chore>(this.apiUrl.concat(`Chores/${roomId}`), body, {headers})
+    return this._httpClient.post<Chore>(this.apiUrl.concat(`Chores/${roomId}`), body, {headers})
   } 
 }

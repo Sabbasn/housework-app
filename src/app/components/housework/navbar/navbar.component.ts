@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   
   _router : Router = inject(Router)
+  _cookie : CookieService = inject(CookieService)
 
   isMenuShowing = false
 
@@ -21,7 +23,8 @@ export class NavbarComponent {
   }
 
   logout() {
-    localStorage.clear()
+    this._cookie.delete('token')
+    this._cookie.delete('email')
     this._router.navigateByUrl('/login')
   }
 

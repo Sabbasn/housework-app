@@ -4,6 +4,7 @@ import { UserLogin } from 'src/models/auth/userLogin.model';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,9 +25,10 @@ export class LoginComponent implements OnInit {
   _auth : AuthService = inject(AuthService)
   _alert : AlertService = inject(AlertService)
   _router : Router = inject(Router)
+  _cookie : CookieService = inject(CookieService)
   
   ngOnInit(): void {
-    this.token = localStorage.getItem('token')
+    this.token = this._cookie.get('token')
     const isValid : boolean = this._auth.isTokenValid(this.token)
     if (isValid) {
       this._router.navigateByUrl('').then(() => window.location.reload())
@@ -47,8 +49,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSuccess(res: any) {
-    localStorage.setItem("token", res["data"])
-    localStorage.setItem("email", this.user.email)
+    this._cookie.set("token", res["data"], 1, undefined, undefined, true)
+    this._cookie.set("email", this.user.email, 1, undefined, undefined, true)
     this._router.navigate(["/"]).then(() => location.reload())
   }
 }
