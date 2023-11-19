@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Room } from 'src/models/housework/room.model';
 import { Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/models/util/alert.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
+import { DropListOrientation } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-home',
@@ -20,12 +21,26 @@ export class HomeComponent implements OnInit {
   _router: Router = inject(Router)
   _alert: AlertService = inject(AlertService)
 
+  private innerWidth: any;
+
   rooms : Room[] = []
   newRoom : Room = new Room()
   showRoomForm = false;
+  orientation: DropListOrientation = "horizontal"
 
   ngOnInit(): void {
     this.updateRooms()
+    this.innerWidth = window.innerWidth
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    if (window.innerWidth > 500) {
+      this.orientation = "horizontal"
+    } else {
+      this.orientation = "vertical"
+    }
+    console.log(window.innerWidth)
   }
 
   drop(event: CdkDragDrop<Room[]>) {
@@ -34,9 +49,7 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < this.rooms.length; i++) {
       const r = this.rooms[i];
       r.orderPriority = i
-      this._userService.updateRoom(r).subscribe({
-        complete: () => console.log(r.orderPriority)
-      })
+      this._userService.updateRoom(r).subscribe()
     }
   }
 

@@ -8,7 +8,7 @@
         </p>
     </div>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <div class="card-list" cdkDropList (cdkDropListDropped)="drop($event)">
+    <div class="card-list" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListOrientation]="orientation">
         <app-card *ngFor="let room of rooms" [room]="room"></app-card>
     </div>
 </div>
