@@ -4,7 +4,7 @@ import { Room } from 'src/models/housework/room.model';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/models/util/alert.model';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragEnd, CdkDragEnter, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AlertStatus } from 'src/models/util/alertStatus.enum';
 import { DropListOrientation } from '@angular/cdk/drag-drop';
 
@@ -21,8 +21,6 @@ export class HomeComponent implements OnInit {
   _router: Router = inject(Router)
   _alert: AlertService = inject(AlertService)
 
-  private innerWidth: any;
-
   rooms : Room[] = []
   newRoom : Room = new Room()
   showRoomForm = false;
@@ -30,7 +28,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateRooms()
-    this.innerWidth = window.innerWidth
+  }
+
+  dragStartDelay() {
+    if (navigator.maxTouchPoints > 0) {
+      return 200
+    } else {
+      return 0
+    }
   }
 
   @HostListener('window:resize', ['$event'])
@@ -40,17 +45,20 @@ export class HomeComponent implements OnInit {
     } else {
       this.orientation = "vertical"
     }
-    console.log(window.innerWidth)
   }
 
-  drop(event: CdkDragDrop<Room[]>) {
-    moveItemInArray(this.rooms, event.previousIndex, event.currentIndex)
+  drop(event: CdkDragDrop<any>) {
+    moveItemInArray(this.rooms, event.previousContainer.data, event.container.data)
 
     for (let i = 0; i < this.rooms.length; i++) {
       const r = this.rooms[i];
       r.orderPriority = i
       this._userService.updateRoom(r).subscribe()
     }
+  }
+
+  entered(event: CdkDragEnter) {
+    moveItemInArray(this.rooms, event.item.data, event.container.data)
   }
 
   updateRooms() {

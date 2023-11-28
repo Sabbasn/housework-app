@@ -8,8 +8,11 @@
         </p>
     </div>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
-    <div class="card-list" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListOrientation]="orientation">
-        <app-card *ngFor="let room of rooms" [room]="room"></app-card>
+    <div class="card-list" cdkDropListGroup>
+        <div cdkDropList [cdkDropListData]="i" *ngFor="let room of rooms; let i = index">
+            <app-card cdkDropList [cdkDropListOrientation]="orientation" cdkDrag [cdkDragData]="i"
+            [room]="room" (cdkDragDropped)="drop($event)" [cdkDragStartDelay]="dragStartDelay()"></app-card>
+        </div>
     </div>
 </div>
 <form #roomForm #addRoomForm="ngForm" class="show-new-card" [ngClass]="{'showing':showRoomForm}" (ngSubmit)="addRoom()">

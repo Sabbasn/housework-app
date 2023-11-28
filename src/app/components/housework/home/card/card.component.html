@@ -1,4 +1,5 @@
-<div class="card" [ngStyle]="{'background-color': room.color}" cdkDrag [cdkDragStartDelay]="dragStartDelay()" (click)="onRoomClick(room)">
+<div class="card" [ngStyle]="{'background-color': room.color}"
+    (click)="onRoomClick(room)">
     <img *ngIf="room.image" class="room-image" [src]="room.image">
     <div class="display">
         <div class="room-info">

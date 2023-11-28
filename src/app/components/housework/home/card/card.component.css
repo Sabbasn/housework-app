@@ -10,10 +10,6 @@
     border-radius: 0.6rem;
 }
 
-.card.cdk-drag-preview {
-    scale: 1.1;
-}
-
 .card img {
     object-fit: fill;
     max-width: 300px;
@@ -25,14 +21,6 @@
 
 .card > .display {
     line-height: 10px;
-}
-
-.card.cdk-drag-placeholder {
-    opacity: 0;
-}
-
-.card.cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .tools {
