@@ -2,6 +2,6 @@
     <label [htmlFor]="'img-uploader-' + room.id">
         <mat-icon>image</mat-icon>
     </label>
-    <input [id]="'img-uploader-' + room.id" type="file" accept="image/png, image/jpeg" [(ngModel)]="room.image"
+    <input [id]="'img-uploader-' + room.id" type="file" accept="image/png, image/jpeg"
         (change)="uploadFile($event)">
 </div>
