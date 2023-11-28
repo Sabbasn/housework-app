@@ -84,7 +84,6 @@
 .show-add-room {
     display: flex;
     align-items: center;
-    border: 1px white solid;
     position: fixed;
     bottom: 50px;
     right: 50px;
