@@ -59,3 +59,7 @@
 .cdk-drag-preview {
     scale: 1.1;
 }
+
+mat-spinner {
+    margin: 0 auto;
+}
