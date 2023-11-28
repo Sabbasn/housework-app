@@ -29,8 +29,9 @@ export class LoginComponent implements OnInit {
   
   ngOnInit(): void {
     this.token = this._cookie.get('token')
+    var email = this._cookie.get('email')
     const isValid : boolean = this._auth.isTokenValid(this.token)
-    if (isValid) {
+    if (isValid && email.length > 0) {
       this._router.navigateByUrl('').then(() => window.location.reload())
     }
   }

@@ -8,10 +8,12 @@ export const authGuard: CanActivateFn = (route, state) => {
   const _router : Router = inject(Router)
   const _auth : AuthService = inject(AuthService)
   const _cookie: CookieService = inject(CookieService)
-  const token = _cookie.get('token')
+  var token = _cookie.get('token')
+  var email = _cookie.get('email')
   
-  if(token == null || !_auth.isTokenValid(token)) {
+  if(token == '' || email == '' || !_auth.isTokenValid(token)) {
     _router.navigateByUrl('/login')
+    _cookie.deleteAll()
     return false
   }
 

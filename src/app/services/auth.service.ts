@@ -34,6 +34,9 @@ export class AuthService {
     }
 
     isTokenValid(token: string) {
+        if (token.length == 0) {
+            return false
+        }
         const decoded: any = jwtDecode(token)
         const expDate = new Date(decoded["exp"] * 1000).getTime()
         if (expDate > Date.now()) {
