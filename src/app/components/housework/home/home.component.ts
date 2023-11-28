@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
     }
 
     this._userService.addRoom(this.newRoom).subscribe({
-      error: (err) => this._alert.setAlert(new Alert(err["message"], AlertStatus.Error)),
+      error: (err) => this._alert.alert(err['message'], AlertStatus.Error),
       complete: () => this.updateRooms()
     })
   }
